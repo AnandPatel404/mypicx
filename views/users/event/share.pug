@@ -1,0 +1,181 @@
+extends ../../layout/event/event-details
+block content 
+    .d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
+        div 
+            nav(aria-label="breadcrumb")
+                ol.breadcrumb.mb-0.p-0
+                    li.breadcrumb-item
+                        a(href="/users/dashboard") All Photo 
+                    li.breadcrumb-item.active(aria-current="page") Share
+
+
+
+    .card.mb-4
+        .card-header 
+            h5.card-title Share for Photo Selection
+        .card-body
+            .row 
+                .col-lg-6  
+                    label.form-label Select collections 
+                    select.form-control#choices-multiple-remove-button(
+                        name="choices-multiple-remove-button"
+                        multiple
+                        data-choices
+                        data-choices-removeItem
+                    )
+                        option(value="Choice 1", selected) Choice 1
+                        option(value="Choice 2") Choice 2
+                        option(value="Choice 3") Choice 3
+                        option(value="Choice 4") Choice 4
+                    label.form-label Select collections 
+                    textarea.form-control(rows="6")  
+                            
+                .col-lg-6  
+                    label.form-label Share this with your clients
+                    label.form-label Select collections 
+                    textarea.form-control(rows="6")  
+                    .d-flex.gap-2.mt-3
+                        button.btn.btn-primary.w-100 Copy Link 
+                        button.btn.btn-outline-primary.w-100 Copy Message 
+
+
+
+
+    .card.mb-4
+        .card-header 
+            h5.card-title Guest Access
+        .card-body
+            .row 
+                .col-lg-8 
+                    .mb-3
+                        label.form-label People with this link can see Only Their Own Photos
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="http://localhost:8080/users/share")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3
+                        label.form-label PIN
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="9988")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="switchCheckDefault")
+                            label.form-check-label(for="switchCheckDefault") Do not Ask PIN 
+                    .border.border-warning.text-warning.text-center.rounded.p-2 Make sure to check the access before printing the QR Code
+
+                .col-lg-4 
+                    .bg-light.border.rounded.p-2
+                        .text-center
+                            img.img-fluid(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+                    .d-flex.gap-2
+                        a(href="").btn.btn-primary.w-100.my-2 Download 
+                        a(href="").btn.btn-outline-primary.w-100.my-2 Share 
+                    .text-mute.text-center.w-100 People with this link can see
+
+
+
+    .card.mb-4
+        .card-header 
+            h5.card-title Full Access
+        .card-body
+            .row 
+                .col-lg-8 
+                    .mb-3
+                        label.form-label People with this link can see All the event photos
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="http://localhost:8080/users/share")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3
+                        label.form-label PIN
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="9988")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="DonotAskPIN ")
+                            label.form-check-label(for="DonotAskPIN ") Do not Ask PIN 
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="RequireRegistration")
+                            label.form-check-label(for="RequireRegistration") Require Registration
+                    .border.border-warning.text-warning.text-center.rounded.p-2 Make sure to check the access before printing the QR Code
+
+                .col-lg-4 
+                    .bg-light.border.rounded.p-2
+                        .text-center
+                            img.img-fluid(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+                    .d-flex.gap-2
+                        a(href="").btn.btn-primary.w-100.my-2 Download 
+                        a(href="").btn.btn-outline-primary.w-100.my-2 Share
+                    .text-mute.text-center.w-100 People with this link can see
+
+
+
+    .card.mb-4
+        .card-header 
+            h5.card-title Photo Selection with Full Access
+        .card-body
+            .row 
+                .col-lg-8 
+                    .mb-3
+                        label.form-label People with this link can see All the event photos  and the photo selection mode is ON
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="http://localhost:8080/users/share")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3
+                        label.form-label PIN
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="9988")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="switchCheckDefault")
+                            label.form-check-label(for="switchCheckDefault") Do not Ask PIN 
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="RequireRegistration")
+                            label.form-check-label(for="RequireRegistration") Require Registration 
+                    .border.border-warning.text-warning.text-center.rounded.p-2 Make sure to check the access before printing the QR Code
+
+                .col-lg-4 
+                    .bg-light.border.rounded.p-2
+                        .text-center
+                            img.img-fluid(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+                    .d-flex.gap-2
+                        a(href="").btn.btn-primary.w-100.my-2 Download 
+                        a(href="").btn.btn-outline-primary.w-100.my-2 Share
+                    .text-mute.text-center.w-100 People with this link can see
+
+
+
+    .card.mb-4
+        .card-header 
+            h5.card-title VIP Guest Access Link
+        .card-body
+            .row 
+                .col-lg-8 
+                    .mb-3
+                        label.form-label  No User Data will be asked for Face Search, they will not receive notification when new photos are available
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="http://localhost:8080/users/share")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3
+                        label.form-label PIN
+                        .d-flex.gap-2 
+                            input.form-control(type="text" placeholder="9988")
+                            button.btn.btn-outline-primary Copy
+                    .mb-3 
+                        .form-check.form-switch.mb-2
+                            input.form-check-input(type="checkbox" role="switch" id="switchCheckDefault")
+                            label.form-check-label(for="switchCheckDefault") Do not Ask PIN  
+                    .border.border-warning.text-warning.text-center.rounded.p-2 Make sure to check the access before printing the QR Code
+
+                .col-lg-4 
+                    .bg-light.border.rounded.p-2
+                        .text-center
+                            img.img-fluid(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+                    .d-flex.gap-2
+                        a(href="").btn.btn-primary.w-100.my-2 Download 
+                        a(href="").btn.btn-outline-primary.w-100.my-2 Share
+                    .text-mute.text-center.w-100 People with this link can see
+

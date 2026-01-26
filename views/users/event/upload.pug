@@ -1,0 +1,37 @@
+extends ../../layout/event/event-details
+block content 
+
+
+
+    .card 
+        .card-header.card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
+            h5.card-title Upload to Images
+            .d-flex.align-items-center.justify-content-end.gap-2.flex-wrap 
+                .dropdown
+                    a.dropdown-toggle.btn.btn-outline-light.shadow(
+                        href="javascript:void(0);"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    ) Select Collection
+                    .dropdown-menu.dropdown-menu-end
+                        a.dropdown-item(href="tasks.html") All Tasks
+                        a.dropdown-item(href="tasks-important.html") Important
+                        a.dropdown-item(href="tasks-completed.html") Completed
+        .card-body   
+            form.dropzone.custom-drop-zon(
+                action=""
+                method="post"
+                data-plugin="dropzone"  
+            )
+                .fallback
+                    input(type="file" name="file", multiple)
+
+                .dz-message.needsclick
+                    i.ti.ti-cloud-upload.h1.text-muted
+                    h3 Drop files here or click to upload.
+                    span.text-muted.fs-13
+                        | (This is just a demo dropzone. Selected files are 
+                        strong not
+                        |  actually uploaded.)
+
+

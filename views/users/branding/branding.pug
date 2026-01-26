@@ -1,0 +1,113 @@
+extends ../../layout/users
+block content 
+    .d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
+        div 
+            nav(aria-label="breadcrumb")
+                ol.breadcrumb.mb-0.p-0
+                    li.breadcrumb-item
+                        a(href="/users/dashboard") Dashboard
+                    li.breadcrumb-item.active(aria-current="page") Branding 
+
+
+
+    .d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
+        // Left side: Filter + Search
+        .d-flex.align-items-center.gap-2.flex-wrap 
+            // Search input next to dropdown
+            .input-icon.input-icon-start.position-relative
+                span.input-icon-addon.text-dark
+                    i.ti.ti-search
+                input.form-control(type="text" placeholder="Search")
+
+        // Right side: View icons + Add button
+        .d-flex.align-items-center.gap-2.flex-wrap
+            .dropdown
+                a.dropdown-toggle.btn.btn-outline-light.px-2.shadow(
+                    href="javascript:void(0);",
+                    data-bs-toggle="dropdown",
+                    aria-expanded="false"
+                )  Filter
+                .dropdown-menu.dropdown-menu-start( 
+                    data-popper-placement="bottom-end"
+                )
+                    ul
+                        li
+                            a.dropdown-item(href="javascript:void(0);") 
+                                | Export as PDF
+                        li
+                            a.dropdown-item(href="javascript:void(0);") 
+                                | Export as Excel
+            a.btn.btn-primary(href="/users/add-branding")
+                i.ti.ti-square-rounded-plus-filled.me-1
+                | Create Branding
+
+
+
+    .row 
+        .col-12 
+            .card
+                .card-header
+                    h4.card-title All Branding
+                .card-body 
+                    .table-responsive
+                        table.table.mb-0
+                            thead
+                                tr
+                                    th User
+                                    th Email
+                                    th Status
+                                    th.text-end Action
+                            tbody
+                                tr
+                                    th(scope="row")
+                                        .d-flex.align-items-center
+                                            span.avatar.avatar-sm.me-2.online.avatar-rounded
+                                                img(src="/assets/img/profiles/avatar-01.jpg" alt="img")
+                                            | Mark
+                                    td
+                                        a(href="") emailprotected@gmail.com
+                                    td  jfkhdjsd f sdhfj fsd fdh
+                                    td.text-end
+                                        .d-inline-flex.gap-2.justify-content-end
+                                            a.btn.btn-icon.btn-sm.btn-soft-success.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-eye
+                                            a.btn.btn-icon.btn-sm.btn-soft-info.rounded-pill(href="/users/edit-branding")
+                                                i.ti.ti-edit
+                                            a.btn.btn-icon.btn-sm.btn-soft-danger.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-trash
+
+                                tr
+                                    th(scope="row")
+                                        .d-flex.align-items-center
+                                            span.avatar.avatar-sm.me-2.online.avatar-rounded
+                                                img(src="/assets/img/profiles/avatar-01.jpg" alt="img")
+                                            | Mark
+                                    td
+                                        a(href="") emailprotected@gmail.com
+                                    td  jfkhdjsd f sdhfj fsd fdh
+                                    td.text-end
+                                        .d-inline-flex.gap-2.justify-content-end
+                                            a.btn.btn-icon.btn-sm.btn-soft-success.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-eye
+                                            a.btn.btn-icon.btn-sm.btn-soft-info.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-edit
+                                            a.btn.btn-icon.btn-sm.btn-soft-danger.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-trash
+
+                                tr
+                                    th(scope="row")
+                                        .d-flex.align-items-center
+                                            span.avatar.avatar-sm.me-2.online.avatar-rounded
+                                                img(src="/assets/img/profiles/avatar-01.jpg" alt="img")
+                                            | Mark
+                                    td
+                                        a(href="") emailprotected@gmail.com
+                                    td  jfkhdjsd f sdhfj fsd fdh
+                                    td.text-end
+                                        .d-inline-flex.gap-2.justify-content-end
+                                            a.btn.btn-icon.btn-sm.btn-soft-success.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-eye
+                                            a.btn.btn-icon.btn-sm.btn-soft-info.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-edit
+                                            a.btn.btn-icon.btn-sm.btn-soft-danger.rounded-pill(href="javascript:void(0);")
+                                                i.ti.ti-trash

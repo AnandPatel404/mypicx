@@ -1,0 +1,127 @@
+extends ../layout/auth
+block content 
+    .row.vh-100.w-100.g-0
+        .col-lg-6.vh-100.overflow-y-auto.overflow-x-hidden
+            //- start row
+            .row
+                .col-md-10.mx-auto
+                    form.vh-100.d-flex.justify-content-between.flex-column.p-4.pb-0(
+                        action=""
+                    )
+                        .text-start.mb-4.auth-logo
+                            img.img-fluid(src="/assets/img/logo.svg" alt="Logo")
+
+                        div
+                            .mb-3
+                                h3.mb-2 Register
+                                p.mb-0 Create new Mypic account
+
+                            .mb-3
+                                label.form-label Email Address
+                                .input-group.input-group-flat
+                                    input.form-control(type="email")
+                                    span.input-group-text
+                                        i.ti.ti-mail 
+                            .mb-3
+                                button.btn.btn-primary.w-100(type="submit") Submit
+
+                            .mb-3
+                                p.mb-0
+                                    | Already have an account? 
+                                    a.link-indigo.fw-bold.link-hover(href="/auth/login")  Sign In Instead
+
+                            .or-login.text-center.position-relative.mb-3
+                                h6.fs-14.mb-0.position-relative.text-body OR
+
+                            .d-flex.align-items-center.justify-content-center.flex-wrap.gap-2.mb-3
+
+                                .text-center.flex-fill
+                                    a.p-2.btn.btn-outline-light.d-flex.align-items-center.justify-content-center(
+                                        href="javascript:void(0);"
+                                    )
+                                        img.img-fluid.m-1(
+                                            src="/assets/img/icons/google-logo.svg"
+                                            alt="Google"
+                                        ) 
+                        include ../components/auth/footer
+
+
+                .col-md-10.mx-auto
+                    form.vh-100.d-flex.justify-content-between.flex-column.p-4.pb-0(
+                        action=""
+                    )
+                        .text-start.mb-4.auth-logo
+                            img.img-fluid(src="/assets/img/logo.svg" alt="Logo")
+
+                        div
+                            .mb-3
+                                h3.mb-2 OTP
+                                p.mb-0 Enter OTP And Continue
+
+                            .mb-3
+                                label.form-label OTP
+                                .d-flex.align-items-center.justify-content-center.gap-3.mb-4
+                                    input.form-control(type="text" maxlength="1")
+                                    input.form-control(type="text" maxlength="1")
+                                    input.form-control(type="text" maxlength="1")
+                                    input.form-control(type="text" maxlength="1")
+                                    input.form-control(type="text" maxlength="1")
+                                    input.form-control(type="text" maxlength="1")
+                            .mb-3
+                                button.btn.btn-primary.w-100(type="submit") Submit
+
+                            .mb-3
+                                p.mb-0
+                                    | If don't receive OTP?
+                                    a.link-indigo.fw-bold.link-hover(href="/auth/login")  Resend
+
+                        include ../components/auth/footer
+
+
+                .col-md-10.mx-auto
+                    form.vh-100.d-flex.justify-content-between.flex-column.p-4.pb-0(
+                        action=""
+                    )
+                        .text-start.mb-4.auth-logo
+                            img.img-fluid(src="/assets/img/logo.svg" alt="Logo")
+
+                        div
+                            .mb-3
+                                h3.mb-2 Register
+                                p.mb-0 Register Your Account
+
+                            .mb-3
+                                label.form-label Name
+                                .input-group.input-group-flat
+                                    input.form-control(type="text")
+                                    span.input-group-text
+                                        i.ti.ti-user 
+
+                            .mb-3
+                                label.form-label Phone
+                                .input-group.input-group-flat
+                                    input.form-control(type="text")
+                                    span.input-group-text
+                                        i.ti.ti-phone 
+
+                            .mb-3
+                                label.form-label Password
+                                .input-group.input-group-flat.pass-group
+                                    input.form-control.pass-input(type="password")
+                                    span.input-group-text.toggle-password
+                                        i.ti.ti-eye-off
+
+                            .mb-3
+                                label.form-label Confirm Password
+                                .input-group.input-group-flat.pass-group
+                                    input.form-control.pass-input(type="password")
+                                    span.input-group-text.toggle-password
+                                        i.ti.ti-eye-off
+
+                            .mb-3
+                                button.btn.btn-primary.w-100(type="submit") Submit
+
+                        include ../components/auth/footer
+            //- end row
+
+        .col-lg-6.account-bg-01

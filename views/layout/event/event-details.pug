@@ -1,0 +1,68 @@
+doctype html
+html(lang="en") 
+    head
+        //- Meta Tags 
+        include ../meta
+        //- Favicon
+        include ../fav-icon
+        //- Bootstrap CSS
+        link(rel="stylesheet" href="../assets/css/bootstrap.min.css")
+        //- Daterangepicker CSS
+        link(rel="stylesheet" href="../assets/plugins/daterangepicker/daterangepicker.css")
+        //- Datatable CSS
+        link(rel="stylesheet" href="../assets/plugins/datatables/css/dataTables.bootstrap5.min.css" )
+        //- Flatpickr CSS
+        link(rel="stylesheet" href="../assets/plugins/flatpickr/flatpickr.min.css" )
+        //- Tabler Icon CSS
+        link(rel="stylesheet" href="../assets/plugins/tabler-icons/tabler-icons.min.css")
+        //- Select2 CSS
+        link(rel="stylesheet" href="../assets/plugins/select2/css/select2.min.css")
+        link(rel="stylesheet" href="../assets/plugins/choices.js/public/assets/styles/choices.min.css")
+        //- Simplebar CSS
+        link(rel="stylesheet" href="../assets/plugins/simplebar/simplebar.min.css")
+        //- Main CSS
+        link(rel="stylesheet" href="../assets/css/style.css" id="app-style")
+    body 
+
+
+        .main-wrapper
+            //- Header
+            include ../../components/users/event-details-header
+            //- sidebar 
+            include ../../components/users/event-details-sidebar
+            .page-wrapper
+                //- Start Content
+                .content.pb-0
+                    .container.p-0
+                        block content  
+                //- Footer
+                include ../../components/users/footer
+
+
+
+        //- jQuery
+        script(src="../assets/js/jquery-3.7.1.min.js")
+        //- Bootstrap Core JS
+        script(src="../assets/js/bootstrap.bundle.min.js")
+        //- Daterangepicker JS
+        script(src="../assets/js/moment.min.js")
+        script(src="../assets/plugins/daterangepicker/daterangepicker.js")
+        //- Simplebar JS
+        script( src="../assets/plugins/simplebar/simplebar.min.js" )
+        script(src="../assets/plugins/choices.js/public/assets/scripts/choices.min.js" )
+        //- Select2 JS
+        script(src="../assets/plugins/select2/js/select2.min.js" )
+        script(src="../assets/plugins/dropzone/dropzone-min.js" )
+        script(src="../assets/js/form-fileupload.js" )
+        //- Flatpickr JS
+        script( src="../assets/plugins/flatpickr/flatpickr.min.js"  )
+        //- Main JS
+        script(src="../assets/js/script.js" )  
+        script.
+            const links = document.querySelectorAll('#sidebar-menu ul li ul a');
+            const currentUrl = window.location.pathname;
+            links.forEach(link => {
+            if(link.getAttribute('href') === currentUrl) {
+            link.parentElement.classList.add('active');
+            }
+            });

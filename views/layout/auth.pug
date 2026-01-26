@@ -1,0 +1,28 @@
+doctype html
+html(lang="en") 
+    head
+        //- Meta Tags 
+        include meta
+        //- Favicon
+        include fav-icon
+        //- Bootstrap CSS
+        link(rel="stylesheet" href="../assets/css/bootstrap.min.css")
+        //- Daterangepicker CSS
+        link(rel="stylesheet" href="../assets/plugins/daterangepicker/daterangepicker.css") 
+        //- Tabler Icon CSS
+        link(rel="stylesheet" href="../assets/plugins/tabler-icons/tabler-icons.min.css")  
+        //- Main CSS
+        link(rel="stylesheet" href="../assets/css/style.css" id="app-style")
+    body.account-page.bg-white
+
+
+        .overflow-hidden.p-3.acc-vh 
+            block content   
+
+
+        //- jQuery
+        script(src="../assets/js/jquery-3.7.1.min.js")
+        //- Bootstrap Core JS
+        script(src="../assets/js/bootstrap.bundle.min.js") 
+        //- Main JS
+        script(src="../assets/js/script.js" )   

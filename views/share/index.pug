@@ -1,0 +1,242 @@
+extends ../layout/share
+block content 
+    header.navbar-header.m-0
+        .page-container.topbar-menu
+            .d-flex.align-items-center.gap-2
+                img(src="../assets/img/logo.svg" alt="logo")
+
+            .d-flex.align-items-center
+
+
+                //- Fullscreen
+                .header-item
+                    .me-2
+                        span.btn.btn-outline-primary(
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#FaceSearch"
+                        )
+                            i.ti.ti-maximize.me-1 
+                            | Face Search 
+
+                .header-item
+                    .me-2
+                        span.btn.btn-outline-primary(
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#otpEvent"
+                        ) 
+                            | Demo Otp
+
+                .header-item 
+                    a.btn.topbar-link.btnFullscreen(href="javascript:void(0);")
+                        i.ti.ti-logout
+
+
+
+
+    section.show-gallery-bnr 
+        .br-image 
+            img(src="/assets/img/blogs/blog-1.jpg" alt="")
+        .container
+            .content.text-center 
+                h2.text-center.text-white Anand Marage Sagai
+                p.text-center.text-white 14 - 10 - 206
+                a(href="#gallery").btn.btn-outline-primary.mx-auto  View Gallery
+
+
+    section#gallery.my-5
+        .container-fluid
+            .card 
+                .card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
+                    h5.card-title All Image 
+                    .d-flex.align-items-center.justify-content-end.gap-2.flex-wrap 
+                        button.btn-icon.btn.btn-outline-light.btn-md
+                            i.ti.ti-star
+                        button.btn-icon.btn.btn-outline-light.btn-md
+                            i.ti.ti-download
+                        .dropdown
+                            a.dropdown-toggle.btn.btn-outline-light.shadow(
+                                href="javascript:void(0);"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            ) All Collection
+
+                            .dropdown-menu.dropdown-menu-end
+                                a.dropdown-item(href="tasks.html") All Tasks
+                                a.dropdown-item(href="tasks-important.html") Important
+                                a.dropdown-item(href="tasks-completed.html") Completed
+                .card-body 
+                    .masonry
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank1")
+                            .bank-box
+                                .check-icon
+                                img(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank2")
+                            .bank-box
+                                .check-icon
+                                img(src="http://localhost:8080/assets/img/users/user-40.jpg" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download 
+                            input.bank-radio(type="checkbox" name="bank" id="bank3")
+                            .bank-box
+                                .check-icon
+                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/API.svg" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank4")
+                            .bank-box
+                                .check-icon
+                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/coding-right.webp" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank5")
+                            .bank-box
+                                .check-icon
+                                img(src="https://whatsme.in/assets/img/front-pages/services-icon/Multi-session-Support.webp" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank6")
+                            .bank-box
+                                .check-icon
+                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/why.svg" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank7")
+                            .bank-box
+                                .check-icon
+                                img(src="https://whatsme.in/assets/img/front-pages/services-icon/api-img-1.webp" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank8")
+                            .bank-box
+                                .check-icon
+                                img(src="https://fotoowl.ai/_next/static/media/sports-men.e53bc9fc.jpg" alt="")
+
+                        .position-relative.item
+                            .download 
+                                a(href="")
+                                    i.ti.ti-download
+                            input.bank-radio(type="checkbox" name="bank" id="bank9")
+                            .bank-box
+                                .check-icon
+                                img(src="https://fotoowl.ai/_next/static/media/reelit.caf78a78.png" alt="")
+
+
+
+
+
+
+    footer.footer.d-block.d-md-flex.justify-content-between.text-md-start.text-center
+        p.mb-md-0.mb-1
+            | Copyright © 
+            script.
+                document.write(new Date().getFullYear())
+            |  
+            a.link-primary.text-decoration-underline(href="javascript:void(0);") My Pic
+
+        .d-flex.align-items-center.gap-2.footer-links.justify-content-center.justify-content-md-end
+            a(href="javascript:void(0);") About
+            a(href="javascript:void(0);") Terms
+            a(href="javascript:void(0);") Contact Us
+
+
+
+
+    .modal.fade#FaceSearch(tabindex="-1" role="dialog" aria-hidden="true")
+        .modal-dialog.modal-fullscreen
+            .modal-content
+                .modal-header
+                    h5.card-title Event Name
+                    button.btn-close(
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    )
+                .modal-body.align-content-center
+                    .container.p-0
+                        .row
+                            .col-lg-6 
+
+                            .col-lg-6
+                                h5.mb-3  Get Your Photos
+                                .mb-3
+                                    label.form-label(for="input-label") Name
+                                    input.form-control(type="text" placeholder="Enter Name")
+
+                                .mb-3
+                                    label.form-label(for="input-label") Email
+                                    input.form-control(type="text" placeholder="Enter Email")
+
+                                .mb-3
+                                    label.form-label(for="input-label") Phone No.
+                                    input.form-control(type="text" placeholder="Enter Phone No.")
+                                .mb-3
+                                    label.form-label.me-3(for="input-label") Capture Selfie                                
+                                    span.btn.btn-outline-primary(
+                                        type="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#FaceSearch"
+                                    )
+                                        i.ti.ti-camera.me-1 
+                                        | Open Camera
+                                .mb-3 
+                                    hr
+                                .mb-3.text-end
+                                    button.btn.btn-primary Get My Photos
+
+
+
+
+    .modal.fade#otpEvent(tabindex="-1" role="dialog" aria-hidden="true")
+        .modal-dialog.modal-fullscreen
+            .modal-content
+                .modal-header
+                    h5.card-title Event Name
+                    button.btn-close(
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    )
+                .modal-body.align-content-center
+                    .container.p-0
+                        .row
+                            .col-lg-6 
+
+                            .col-lg-6
+                                h5.mb-3  Get Your Photos
+                                .mb-3
+                                    label.form-label(for="input-label") PIN
+                                    input.form-control(type="text" placeholder="Enter PIN")  
+                                .mb-3.text-end
+                                    button.btn.btn-primary Submit
+
+
+

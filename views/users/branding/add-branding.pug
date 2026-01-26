@@ -1,0 +1,79 @@
+extends ../../layout/users
+block content 
+    .d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
+        div 
+            nav(aria-label="breadcrumb")
+                ol.breadcrumb.mb-0.p-0
+                    li.breadcrumb-item
+                        a(href="/users/dashboard") Dashboard
+                    li.breadcrumb-item
+                        a(href="/users/branding") Events
+                    li.breadcrumb-item.active(aria-current="page") Add Events 
+
+
+
+    .row
+        .col-xl-12
+            .card
+                .card-header
+                    h5.card-title Add Branding
+                .card-body
+                    .row
+                        .col-lg-12
+                            .d-flex.align-items-center.mb-3
+                                .avatar.avatar-xxl.border.border-dashed.me-3.flex-shrink-0
+                                    .position-relative.d-flex.align-items-center
+                                        i.ti.ti-photo.text-dark.fs-16
+                                .d-inline-flex.flex-column.align-items-start
+                                    .drag-upload-btn.btn.btn-sm.btn-primary.position-relative.mb-2
+                                        i.ti.ti-file-broken.me-1
+                                        | Upload file
+                                        input.form-control.image-sign(type="file" multiple)
+                                    span Add Cover Image
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Name
+                                input.form-control(type="text" placeholder="Enter Name")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Email
+                                input.form-control(type="email" placeholder="Enter Email")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Contact number
+                                input.form-control(type="text" placeholder="Enter Contact number")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Website
+                                input.form-control(type="text" placeholder="http://demo.com") 
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Facebook
+                                input.form-control(type="text" placeholder="http://demo.com")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Instagram
+                                input.form-control(type="text" placeholder="http://demo.com")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") YouTube
+                                input.form-control(type="text" placeholder="http://demo.com")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Linkedin Page 
+                                input.form-control(type="text" placeholder="http://demo.com")
+                        .col-lg-4
+                            .mb-3
+                                label.form-label(for="input-label") Twitter 
+                                input.form-control(type="text" placeholder="http://demo.com")
+                        .col-12 
+                            .mb-3 
+                                .form-check.mb-1
+                                    input.form-check-input(type="checkbox" id="MakeDefault")
+                                    label.form-check-label.ms-1(for="MakeDefault") Make Default
+                        .col-12 
+                            hr
+                        .col-12 
+                            .d-flex.align-items-center.justify-content-end
+                                a.btn.btn-light.me-2(href="#") Cancel
+                                button.btn.btn-primary(type="submit") Create Event

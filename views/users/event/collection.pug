@@ -1,0 +1,97 @@
+extends ../../layout/event/event-details
+block content 
+    .d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
+        div 
+            nav(aria-label="breadcrumb")
+                ol.breadcrumb.mb-0.p-0
+                    li.breadcrumb-item
+                        a(href="/users/event-details") All Photo 
+                    li.breadcrumb-item.active(aria-current="page") Collection
+
+
+    .d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
+        // Left side: Filter + Search
+        .d-flex.align-items-center.gap-2.flex-wrap 
+            // Search input next to dropdown
+            .input-icon.input-icon-start.position-relative
+                span.input-icon-addon.text-dark
+                    i.ti.ti-search
+                input.form-control(type="text" placeholder="Search")
+
+        // Right side: View icons + Add button
+        .d-flex.align-items-center.gap-2.flex-wrap  
+            span.btn.btn-primary(
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#CreateCollection"
+            )
+                i.ti.ti-square-rounded-plus-filled.me-1
+                | Create Collection
+
+
+    .row.mb-4
+        .col-md-6.col-lg-4.mb-3
+            .card.blog-item.mb-0
+                .card-body
+                    .blog-img.rounded.position-relative.mb-3
+                        a(href="#")
+                            img.img-fluid.position-relative.rounded(src="../assets/img/blogs/blog-1.jpg" alt="img")
+                    .blog-content
+                        .d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
+                            span
+                                i.ti.ti-photo.me-1
+                                | 140 Media
+                            span
+                                i.ti.ti-calendar.me-1
+                                | 27 May 2025
+                        .mb-3
+                            h6.mb-2
+                                a(href="/users/collection-details") Improve Efficiency for Sales 
+                        hr
+                        .d-flex.align-items-center.justify-content-between
+                            a.btn.btn-xs.px-3.fs-12.btn-outline-dark(href="/users/edit-event")
+                                i.ti.ti-eye.me-1
+                                | View
+                            a.btn.btn-xs.px-3.fs-12.btn-outline-danger(href="edit-blog.html")
+                                i.ti.ti-edit.me-1
+                                | Delete  
+
+
+
+
+
+
+
+
+    //- Center modal content
+    .modal.fade#CreateCollection(tabindex="-1" role="dialog" aria-hidden="true")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.card-title Create Collection
+                    button.btn-close(
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    )
+                .modal-body
+                    .row
+                    .col-lg-12
+                        .d-flex.align-items-center.mb-3
+                            .avatar.avatar-xxl.border.border-dashed.me-3.flex-shrink-0
+                                .position-relative.d-flex.align-items-center
+                                    i.ti.ti-photo.text-dark.fs-16
+                            .d-inline-flex.flex-column.align-items-start
+                                .drag-upload-btn.btn.btn-sm.btn-primary.position-relative.mb-2
+                                    i.ti.ti-file-broken.me-1
+                                    | Upload file
+                                    input.form-control.image-sign(type="file" multiple)
+                                span Add Cover Image
+                        .col-lg-12
+                            .mb-3
+                                label.form-label(for="input-label") Event Name
+                                input.form-control(type="text" placeholder="Enter Event Name")
+                        .col-12 
+                            hr
+                        .col-12.text-end
+                            button.btn.btn-primary Submit
