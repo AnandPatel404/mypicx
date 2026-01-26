@@ -1,0 +1,113 @@
+header.navbar-header
+    .page-container.topbar-menu
+        .d-flex.align-items-center.gap-2
+            //- Logo
+            a.logo(href="#")
+                //- Logo Normal
+                span.logo-light
+                    span.logo-lg
+                        img(src="../assets/img/logo.svg" alt="logo")
+                    span.logo-sm
+                        img(src="../assets/img/logo-small.svg" alt="small logo")
+
+                //- Logo Dark
+                span.logo-dark
+                    span.logo-lg
+                        img(src="../assets/img/logo-white.svg" alt="dark logo")
+
+            //- Sidebar Mobile Button
+            a#mobile_btn.mobile-btn(href="#sidebar")
+                i.ti.ti-menu-deep.fs-24
+
+            button#toggle_btn2.sidenav-toggle-btn.btn.border-0.p-0
+                i.ti.ti-arrow-bar-to-right
+
+            //- Search
+            .me-auto.d-flex.align-items-center.header-search.d-lg-flex.d-none
+                .input-icon.position-relative.me-2
+                    input.form-control(type="text" placeholder="Search Keyword")
+                    span.input-icon-addon.d-inline-flex.p-0.header-search-icon
+                        i.ti.ti-command
+
+        .d-flex.align-items-center
+            //- Search for Mobile
+            .header-item.d-flex.d-lg-none.me-2
+                button.topbar-link.btn(
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#searchModal"
+                )
+                    i.ti.ti-search.fs-16
+
+            //- Fullscreen
+            .header-item
+                .dropdown.me-2
+                    a.btn.topbar-link.btnFullscreen(href="javascript:void(0);")
+                        i.ti.ti-maximize
+
+
+
+
+            .header-line
+
+
+            //- Notifications
+            //- .header-item
+            //-     .dropdown.me-2
+            //-         button.topbar-link.btn.dropdown-toggle.drop-arrow-none(
+            //-             type="button"
+            //-             data-bs-toggle="dropdown"
+            //-             data-bs-offset="0,24"
+            //-         )
+            //-             i.ti.ti-bell-check.fs-16.animate-ring
+            //-             span.badge.rounded-pill 10
+
+            //-         .dropdown-menu.p-0.dropdown-menu-end.dropdown-menu-lg(style="min-height:300px;")
+            //-             .p-2.border-bottom
+            //-                 h6.m-0.fs-16.fw-semibold Notifications
+
+            //-             .notification-body.position-relative.z-2(data-simplebar) 
+
+            //-             .p-2.border-top.text-center
+            //-                 a.text-decoration-underline.fs-14(href="#") View All Notifications
+
+            //- User Dropdown
+            .dropdown.profile-dropdown.d-flex.align-items-center.justify-content-center
+                a.topbar-link.dropdown-toggle.drop-arrow-none.position-relative(
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown"
+                    data-bs-offset="0,22"
+                )
+                    img.rounded-1(src="../assets/img/users/user-40.jpg" width="38" alt="user-image")
+                    span.online.text-success
+                        i.ti.ti-circle-filled.bg-white.rounded-circle.border.border-1
+
+                .dropdown-menu.dropdown-menu-end.dropdown-menu-md.p-2
+                    .d-flex.align-items-center.bg-light.rounded-3.p-2.mb-2
+                        img.rounded-circle(src="../assets/img/users/user-40.jpg" width="42" height="42")
+                        .ms-2
+                            p.fw-medium.text-dark.mb-0 Katherine Brooks
+                            span.fs-13 Installer
+
+                    a.dropdown-item(href="#")
+                        i.ti.ti-user-circle.me-1
+                        | Profile Settings
+
+                    .form-check.form-switch.form-check-reverse.dropdown-item
+                        label.form-check-label(for="notify")
+                            i.ti.ti-bell
+                            | Notifications
+                            input#notify.form-check-input(type="checkbox" role="switch")
+
+                    a.dropdown-item(href="#")
+                        i.ti.ti-help-circle.me-1
+                        | Help & Support
+
+                    a.dropdown-item(href="#")
+                        i.ti.ti-settings.me-1
+                        | Settings
+
+                    .pt-2.mt-2.border-top
+                        a.dropdown-item.text-danger(href="#")
+                            i.ti.ti-logout.me-1.fs-17
+                            | Sign Out

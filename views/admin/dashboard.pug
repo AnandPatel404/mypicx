@@ -1,0 +1,102 @@
+extends ../layout/admin
+block content
+    //- Start Welcome Wrap
+    .welcome-wrap.mb-4
+        .d-flex.align-items-center.justify-content-between.flex-wrap.gap-3.bg-dark.rounded.p-4
+            div
+                h2.mb-1.text-white.fs-24 Welcome Back, Adrian
+                p.text-light.fs-14.mb-0 14 New Companies Subscribed Today !!! 
+    //- End Welcome Wrap
+
+
+
+    .row.row-gap-3.mb-4
+        //- Total Companies
+        .col-xl-3.col-sm-6.d-flex
+            .card.flex-fill.mb-0.position-relative.overflow-hidden
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 Total User 
+                                h2.mb-0.fs-16 5468 
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-primary.border.border-primary
+                                i.ti.ti-building.fs-16.text-primary
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-01.svg" alt="elemnt-01")
+
+        //- Active Companies
+        .col-xl-3.col-sm-6.d-flex
+            .card.flex-fill.mb-0.position-relative.overflow-hidden
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 User Extention
+                                h2.mb-0.fs-16 4598 
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-success.border.border-success
+                                i.ti.ti-carousel-vertical.fs-16.text-success
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-02.svg" alt="elemnt-02")
+
+        //- Total Subscribers
+        .col-xl-3.col-sm-6.d-flex
+            .card.flex-fill.mb-0.position-relative.overflow-hidden
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 Active User
+                                h2.mb-0.fs-16 Silver 
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-warning.border.border-warning
+                                i.ti.ti-chalkboard-off.fs-16.text-warning
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-03.svg" alt="elemnt-03")
+
+        //- Total Earnings
+        .col-xl-3.col-sm-6.d-flex
+            .card.flex-fill.mb-0.position-relative.overflow-hidden
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 Expire User
+                                h2.mb-0.fs-16 12 - 9 - 2026
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-danger.border.border-danger.mb-3
+                                i.ti.ti-businessplan.fs-16.text-primary
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-04.svg" alt="elemnt-04")
+
+
+
+    .row 
+        .col-md-12.d-flex
+            .card.flex-fill
+                .card-header.d-flex.align-items-center.justify-content-between.flex-wrap.row-gap-3
+                    h6.mb-0 Recently Created Deals
+
+                    .dropdown
+                        a.btn.btn-outline-light.shadow.dropdown-toggle(
+                            href="javascript:void(0);"
+                            data-bs-toggle="dropdown"
+                        ) Last 30 days
+
+                        .dropdown-menu.dropdown-menu-end
+                            a.dropdown-item(href="javascript:void(0);") Last 15 days
+                            a.dropdown-item(href="javascript:void(0);") Last 30 days
+
+                .card-body
+                    .table-responsive.custom-table
+                        table.table.dataTable.table-nowrap#deals-project
+                            thead.table-light
+                                tr
+                                    th Deal Name
+                                    th Stage
+                                    th Deal Value
+                                    th Status
+                            tbody   
+                                tr 
+                                    td Name         
+                                    td Name         
+                                    td Name         
+                                    td Name          

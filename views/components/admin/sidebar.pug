@@ -1,0 +1,86 @@
+div#sidebar.sidebar
+    //- Start Logo
+    .sidebar-logo
+        div
+            //- Logo Normal
+            a.logo.logo-normal(href="#")
+                img(src="../assets/img/logo.svg" alt="Logo")
+
+            //- Logo Small
+            a.logo-small(href="#")
+                img(src="../assets/img/logo-small.svg" alt="Logo")
+
+            //- Logo Dark
+            a.dark-logo(href="#")
+                img(src="../assets/img/logo-white.svg" alt="Logo")
+
+        button#toggle_btn.sidenav-toggle-btn.btn.border-0.p-0.active
+            i.ti.ti-arrow-bar-to-left
+
+        //- Sidebar Menu Close
+        button.sidebar-close
+            i.ti.ti-x.align-middle
+    //- End Logo
+
+    //- Sidenav Menu
+    .sidebar-inner(data-simplebar)
+        #sidebar-menu.sidebar-menu
+            ul
+                //- li.menu-title
+                //-     span Main Menu
+
+                //- li
+                //-     ul
+                //-         li.submenu
+                //-             a(href="javascript:void(0);")
+                //-                 i.ti.ti-dashboard
+                //-                 span Dashboard
+                //-                 span.menu-arrow
+                //-             ul
+                //-                 li: a(href="#") Deals Dashboard
+                //-                 li: a(href="#") Leads Dashboard
+                //-                 li: a(href="#") Project Dashboard 
+
+                li.menu-title
+                    span Main Menu
+
+                li
+                    ul
+                        li: a(href="/admin/dashboard") 
+                            i.ti.ti-dashboard
+                            span Dashboard
+                        li: a(href="/admin/user-list") 
+                            i.ti.ti-users
+                            span User List
+
+
+                li.menu-title
+                    span Report
+
+                li
+                    ul 
+                        li: a(href="/admin/transactions") 
+                            i.ti.ti-file-invoice
+                            span Transactions 
+
+                li.menu-title
+                    span Plans
+
+                li
+                    ul 
+                        li: a(href="/admin/plan") 
+                            i.ti.ti-medal
+                            span Plans
+                        li: a(href="/admin/addon") 
+                            i.ti.ti-artboard
+                            span Addon
+
+
+                li.menu-title
+                    span Support
+
+                li
+                    ul
+                        li: a(href="/admin/help") 
+                            i.ti.ti-user
+                            span Help & Support
