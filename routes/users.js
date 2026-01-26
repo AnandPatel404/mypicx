@@ -1,4 +1,4 @@
-var express = require('express');
+import express from 'express';
 var router = express.Router();
 
 
@@ -94,4 +94,5 @@ router.get('/upload', function (req, res, next) {
   res.render('users/event/upload', { title: 'Share' });
 });
 
-module.exports = router;
+export default router;
+

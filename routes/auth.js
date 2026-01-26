@@ -1,4 +1,4 @@
-var express = require('express');
+import express from 'express';
 var router = express.Router();
 
 /* GET home page. */
@@ -14,4 +14,5 @@ router.get('/forgot-password', function(req, res, next) {
   res.render('auth/forgot-password', { title: 'Forgot Password' });
 });
 
-module.exports = router;
+export default router;
+

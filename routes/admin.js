@@ -1,4 +1,4 @@
-var express = require('express');
+import express from 'express';
 var router = express.Router();
 
 
@@ -25,4 +25,6 @@ router.get('/addon', function (req, res, next) {
 router.get('/help', function (req, res, next) {
     res.render('admin/help', { title: 'help & support' });
 });
-module.exports = router;
+
+export default router;
+
