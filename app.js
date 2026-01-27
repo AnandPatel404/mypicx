@@ -2,7 +2,7 @@ import env from 'dotenv';
 env.config();
 import express from 'express';
 import paginate from 'express-paginate';
-import { RedisStore } from 'connect-redis';
+import RedisStore from 'connect-redis';
 import session from 'express-session';
 import helmet from 'helmet';
 import { notFound } from './middlewares/errorMiddleware.js';
@@ -15,6 +15,8 @@ import path from 'path';
 import passport from 'passport';
 import googleAuth from './controllers/googleAuth.js';
 import passportConfig from './controllers/passport.js';
+import { isUserAuth } from './middlewares/userAuthMiddleware.js';
+
 passportConfig(passport);
 googleAuth(passport);
 
@@ -48,7 +50,7 @@ app.use(
 			client: redisClient,
 			ttl: 3200,
 			prefix: 'my_pic:',
-			db: 0,
+			db: 1,
 		}),
 		secret: process.env.SESSION_SECRET,
 		resave: false,
@@ -100,7 +102,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(useragent.express());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', isUserAuth, usersRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 

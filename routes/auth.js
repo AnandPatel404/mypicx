@@ -79,6 +79,8 @@ router.post(
 			}
 
 			req.logIn(user, async (err) => {
+				console.log(err);
+				
 				if (err) {
 					return next(new UserError(err.message, err.message, 400));
 				}
