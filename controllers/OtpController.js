@@ -5,10 +5,10 @@ const OTP_EXPIRY_SECONDS = 5 * 60; // 5 minutes
 
 export default class OtpController {
 	constructor(mobile_no, otp_type = 'register') {
-		this.otp_key = `WHATSME:otp:${otp_type}:${mobile_no}`;
-		this.otp_retry_key = `WHATSME:otp:${otp_type}:retry:${mobile_no}`;
-		this.otp_resend_key = `WHATSME:otp:${otp_type}:resend:${mobile_no}`;
-		this.otp_resend_timestamp = `WHATSME:otp:${otp_type}:resend:time:${mobile_no}`;
+		this.otp_key = `MYPIC:otp:${otp_type}:${mobile_no}`;
+		this.otp_retry_key = `MYPIC:otp:${otp_type}:retry:${mobile_no}`;
+		this.otp_resend_key = `MYPIC:otp:${otp_type}:resend:${mobile_no}`;
+		this.otp_resend_timestamp = `MYPIC:otp:${otp_type}:resend:time:${mobile_no}`;
 	}
 
 

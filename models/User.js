@@ -18,14 +18,6 @@ export default function (sequelize, DataTypes) {
 				type: DataTypes.STRING(95),
 				allowNull: false,
 			},
-			country_code: {
-				type: DataTypes.INTEGER(10),
-				allowNull: false,
-			},
-			mobile_no: {
-				type: DataTypes.STRING(15),
-				allowNull: false,
-			},
 			password: {
 				type: DataTypes.STRING(255),
 				allowNull: true,

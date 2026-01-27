@@ -13,7 +13,7 @@ import asyncHandler from '../utils/asyncHandler.js';
 import { PROJECT_NAME } from '../config/prefix.js';
 import UserError from '../utils/UserError.js';
 import { joiValidate } from '../validations/joi_auth_validation.js';
-const debug = debugFn('whatsapp-backend:auth');
+const debug = debugFn('mypicx:auth');
 const { User, History } = db;
 const router = express.Router();
 const logo = path.join(process.cwd(), 'public', 'assets', 'images', 'logo', 'payment-logo.png');
@@ -301,7 +301,7 @@ router.post('/register', asyncHandler(async function (req, res, next) {
 			)
 		);
 	}
-	const { mobile_no, name, password, email, country_code } = req.body;
+	const { name, password, email } = req.body;
 
 	const user = await User.findOne({ where: { email } });
 	if (user) {
@@ -318,8 +318,6 @@ router.post('/register', asyncHandler(async function (req, res, next) {
 	await User.create({
 		name: name,
 		email: email,
-		mobile_no: mobile_no,
-		country_code: country_code,
 		password: password,
 	});
 	return successResponseHandler(res, "/auth/register", 200, `User registered successfully.`, '/auth/login');

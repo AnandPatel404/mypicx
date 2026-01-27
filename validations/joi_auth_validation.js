@@ -175,52 +175,6 @@ export const joiValidate = (method) => {
 		case 'register': {
 			return Joi.object()
 				.keys({
-					mobile_no: Joi.string()
-						.pattern(/^[6-9]\d{9}$/)
-						.min(10)
-						.max(10)
-						.required()
-						.error((errors) => {
-							errors.forEach((err) => {
-								switch (err.code) {
-									case 'any.required':
-									case 'any.empty':
-									case 'string.empty':
-										err.message = 'Please enter mobile number.';
-										break;
-									case 'string.pattern.base':
-										err.message = 'Please enter valid mobile number.';
-										break;
-									case 'string.min':
-									case 'string.max':
-										err.message = 'Mobile number must be 10 digits long.';
-										break;
-									default:
-										break;
-								}
-							});
-							return errors;
-						}),
-					country_code: Joi.string()
-						.pattern(/^\+?[1-9]\d{0,3}$/)
-						.required()
-						.error((errors) => {
-							errors.forEach((err) => {
-								switch (err.code) {
-									case 'any.required':
-									case 'any.empty':
-									case 'string.empty':
-										err.message = 'Please enter country code.';
-										break;
-									case 'string.pattern.base':
-										err.message = 'Please enter a valid country code.';
-										break;
-									default:
-										break;
-								}
-							});
-							return errors;
-						}),
 					email: Joi.string()
 						.email({ tlds: { allow: false } })
 						.required()
