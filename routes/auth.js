@@ -23,7 +23,7 @@ router.get('/login', function (req, res) {
 		return renderSuccessResponseHandler(res, 'auth/login', { title: "Login" });
 	} catch (error) {
 		console.error('[e] GET /auth/login', error.message);
-		return successResponseHandler(res, '500');
+		return renderSuccessResponseHandler(res, '500');
 	}
 });
 
@@ -32,16 +32,16 @@ router.get('/register', function (req, res) {
 		return renderSuccessResponseHandler(res, 'auth/register');
 	} catch (error) {
 		console.error('[e] GET /auth/register', error.message);
-		return successResponseHandler(res, '500');
+		return renderSuccessResponseHandler(res, '500');
 	}
 });
 
 router.get('/forgot-password', function (req, res) {
 	try {
-		return successResponseHandler(res, 'auth/forgot-password');
+		return renderSuccessResponseHandler(res, 'auth/forgot-password', { title: "Forgot Password" });
 	} catch (error) {
 		console.error('[e] GET /auth/forgot-password', error.message);
-		return successResponseHandler(res, '500');
+		return renderSuccessResponseHandler(res, '500');
 
 	}
 });
