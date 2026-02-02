@@ -54,12 +54,30 @@ block content
                                 .form-check.form-switch.mb-2
                                     input.form-check-input(type="checkbox" role="switch" id="switchCheckDefault")
                                     label.form-check-label(for="switchCheckDefault") Guests will receive E-mail when they register on event and when event is published
-                        .col-12 
-                            hr
-                        .col-12 
-                            .d-flex.align-items-center.justify-content-end
-                                a.btn.btn-light.me-2(href="#") Cancel
-                                button.btn.btn-primary(type="submit") Edit Event
+
+
+
+
+    .row
+        .col-xl-12
+            .card
+                .card-header
+                    h5.card-title Download Options
+                .card-body
+                    .row  
+                        .col-lg-6 
+                            .mb-3 
+                                p Turn On to allow clients to download all the photos
+                                .form-check.form-switch.mb-2
+                                    input.form-check-input(type="checkbox" role="switch" id="EnablePIN")
+                                    label.form-check-label(for="EnablePIN") Bulk Download
+
+                        .col-lg-6 
+                            .mb-3 
+                                p Turn On to allow clients to download individual photos
+                                .form-check.form-switch.mb-2
+                                    input.form-check-input(type="checkbox" role="switch" id="EnablePIN")
+                                    label.form-check-label(for="EnablePIN") Single Download
 
 
 
@@ -87,3 +105,9 @@ block content
                                     label.form-label(for="input-datetime-local") Full access PIN
                                     input.form-control(type="text" placeholder="1234") 
                                 .btn.btn-outline-primary(style="max-width:100px") Copy  
+
+    .row.mb-4
+        .col-12 
+            .d-flex.align-items-center.justify-content-end
+                a.btn.btn-light.me-2(href="#") Cancel
+                button.btn.btn-primary(type="submit") Edit Event
