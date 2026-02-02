@@ -128,3 +128,7 @@ auth_info_baileys/*
 
 public/merchant_company_icon/*
 !public/merchant_company_icon/.gitkeep
+
+
+public/branding/*
+!public/branding/.gitkeep

@@ -4,7 +4,7 @@ import { renderSuccessResponseHandler, successResponseHandler } from '../utils/S
 import asyncHandler from '../utils/asyncHandler.js';
 import { joiValidate } from '../validations/joi_user_validation.js';
 import UserError from '../utils/UserError.js';
-const { History, User } = db;
+const { History, User, Branding } = db;
 const router = express.Router();
 
 
@@ -25,9 +25,73 @@ router.get('/setting', function (req, res) {
 });
 
 
-router.get('/branding', function (req, res) {
-	res.render('users/branding/branding', { title: 'Edit Event' });
+router.get('/branding', async function (req, res) {
+	try {
+		const user_id = req.user.id;
+		const where = {
+			user_id
+		};
+
+		const count = await Branding.count({
+			where,
+		});
+
+		const pageCount = Math.ceil(count / req.query.limit);
+		const data = await Branding.findAll({
+			where,
+			order: [['createdAt', 'DESC']],
+			limit: req.query.limit,
+			offset: req.skip,
+		});
+
+		return res.render('users/branding/branding', {
+			title: 'Branding',
+			pageCount,
+			data,
+			current_page: req.query.page,
+			pages: res.locals.paginate.getArrayPages(5, pageCount, req.query.page),
+		});
+	} catch (error) {
+		console.error("[E] /users/branding", error);
+		return res.render("500");
+	}
 });
+
+//Get branding by id
+router.get('/edit-branding/:id([0-9]+)', asyncHandler(async (req, res, next) => {
+	try {
+		const value = await joiValidate('get_branding_by_id').validateAsync(req.params, {
+			convert: true,
+			abortEarly: true,
+			allowUnknown: false,
+		});
+		req.params = value;
+	} catch (error) {
+		return next(
+			new UserError(
+				error.details[0]?.message,
+				error.details[0]?.message,
+				400,
+				'validation'
+			)
+		);
+	}
+	const user_id = req.user.id;
+	const { id } = req.params;
+
+	const branding_exist = await Branding.findOne({
+		where: {
+			user_id: user_id,
+			id
+		},
+	});
+
+	if (!branding_exist) return res.render('404');
+
+	return res.render('users/branding/edit-branding', { title: 'Edit branding', data: branding_exist });
+}));
+
+
 
 router.get('/add-branding', function (req, res) {
 	res.render('users/branding/add-branding', { title: 'Add Event' });
