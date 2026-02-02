@@ -132,3 +132,6 @@ public/merchant_company_icon/*
 
 public/branding/*
 !public/branding/.gitkeep
+
+public/event/*
+!public/event/.gitkeep

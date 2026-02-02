@@ -43,7 +43,7 @@ router.post('/', uploadEventCover.single('cover_image'), asyncHandler(async (req
 		where: {
 			user_id: user_id,
 			name,
-			type
+			event_type: type
 		},
 	});
 
@@ -79,8 +79,8 @@ router.post('/', uploadEventCover.single('cover_image'), asyncHandler(async (req
 	await Event.create({
 		user_id,
 		name,
-		type,
-		branding_id: branding,
+		event_type: type,
+		brand_id: branding,
 		starting_date,
 		ending_date,
 		cover_image: file,
@@ -169,7 +169,7 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 		guest_access_pin,
 		full_access_pin,
 		photo_selection_with_full_access_pin,
-		vip_guest_access_pin 
+		vip_guest_access_pin
 	} = req.body;
 
 	// check the event type is exist or not 
@@ -197,7 +197,7 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 	}
 
 
-	if (branding_id && event_exist.branding_id !== branding_id) {
+	if (branding_id && event_exist.brand_id !== branding_id) {
 		const branding = await Branding.findOne({
 			where: {
 				user_id: user_id,
@@ -208,11 +208,11 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 		if (!branding) {
 			return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
 		}
-		event_exist.branding_id = branding_id;
+		event_exist.brand_id = branding_id;
 	}
 
 	event_exist.name = name || event_exist.name;
-	event_exist.type = type || event_exist.type;
+	event_exist.event_type = type || event_exist.event_type;
 	event_exist.starting_date = starting_date || event_exist.starting_date;
 	event_exist.ending_date = ending_date || event_exist.ending_date;
 	event_exist.guest_access_pin = guest_access_pin || event_exist.guest_access_pin;
@@ -225,7 +225,6 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 
 	return successResponseHandler(res, '/event', 200, "Event updated.", "/users/events", false);
 }));
-
 
 //Delete event cover image
 router.delete('/cover_image/:id([0-9]+)', asyncHandler(async (req, res, next) => {

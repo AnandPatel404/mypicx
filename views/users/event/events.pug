@@ -20,33 +20,33 @@ block content
 
 
 	.row.mb-4
-		.col-md-6.col-lg-4.mb-3
-			.card.blog-item.mb-0
-				.card-body
-					.blog-img.rounded.position-relative.mb-3
-						a(href="#")
-							img.img-fluid.position-relative.rounded(src="../assets/img/blogs/blog-1.jpg" alt="img")
-						a.btn.btn-xs.btn-info.position-absolute.fs-12.py-0.top-0.start-0.mt-2.ms-2(href="#") Sales Optimization
-					.blog-content
-						.d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
-							span
-								i.ti.ti-photo.me-1
-								| 140 Media
-							span
-								i.ti.ti-calendar.me-1
-								| 27 May 2025
-						.mb-3
-							h6.mb-2
-								a(href="/users/event-details") Improve Efficiency for Sales 
-						hr
-						.d-flex.align-items-center.justify-content-start.gap-2
-							a.btn.btn-icon.btn-sm.btn-outline-primary(href="/users/event-details")
-								i.ti.ti-eye
-							a.btn.btn-icon.btn-sm.btn-outline-secondary(href="/users/upload")
-								i.ti.ti-upload
-							a.btn.btn-icon.btn-sm.btn-outline-success(href="/users/share")
-								i.ti.ti-share
-							a.btn.btn-icon.btn-sm.btn-outline-dark(href="/users/setting")
-								i.ti.ti-settings
-							a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
-								i.ti.ti-trash
+		each item in data
+			.col-md-6.col-lg-4.mb-3
+				.card.blog-item.mb-0
+					.card-body
+						.blog-img.rounded.position-relative.mb-3
+							a(href=`/users/event-details/${item.id}`)
+								img.img-fluid.position-relative.rounded(src=item.cover_image alt="img")
+						.blog-content
+							.d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
+								span
+									i.ti.ti-photo.me-1
+									| #{item.dataValues.media_count} Media
+								span
+									i.ti.ti-calendar.me-1
+									| #{moment(item.createdAt).format("DD/MM/YYYY")}
+							.mb-3
+								h6.mb-2
+									a(href=`/users/event-details/${item.id}`) #{item.name}
+							hr
+							.d-flex.align-items-center.justify-content-start.gap-2
+								a.btn.btn-icon.btn-sm.btn-outline-primary(href="/users/event-details")
+									i.ti.ti-eye
+								a.btn.btn-icon.btn-sm.btn-outline-secondary(href="/users/upload")
+									i.ti.ti-upload
+								a.btn.btn-icon.btn-sm.btn-outline-success(href="/users/share")
+									i.ti.ti-share
+								a.btn.btn-icon.btn-sm.btn-outline-dark(href="/users/setting")
+									i.ti.ti-settings
+								a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
+									i.ti.ti-trash

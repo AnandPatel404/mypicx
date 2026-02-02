@@ -61,12 +61,16 @@ $(document).ready(function () {
 				},
 			},
 			errorPlacement: function (error, element) {
+
 				error.addClass('invalid-feedback');
 				if (element.parent('.input-group').length) {
 					error.insertAfter(element.parent());
 				} else if (element.prop('type') === 'radio' && element.parent('.radio-inline').length) {
 					error.insertAfter(element.parent().parent());
-				} else if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+				} else if (element.prop('type') === "select-one") {
+					error.appendTo(element.parent());
+				}
+				else if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
 					error.appendTo(element.parent().parent());
 				} else if (element.prop('type') === 'password') {
 					error.appendTo(element.parent().parent());

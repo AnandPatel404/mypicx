@@ -27,6 +27,16 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
+					cover_image: Joi.string().optional().allow(null, '')
+						.error((errors) => {
+							errors.forEach((err) => {
+								switch (err.code) {
+									default:
+										break;
+								}
+							});
+							return errors;
+						}),
 					branding_id: Joi.number()
 						.required()
 						.positive()
@@ -78,7 +88,7 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
-					starting_date: Joi.date()
+					starting_date: Joi.date().required()
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -97,7 +107,7 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
-					ending_date: Joi.string().min(Joi.ref('starting_date'))
+					ending_date: Joi.date().required().min(Joi.ref('starting_date'))
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -228,7 +238,7 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
-					starting_date: Joi.date()
+					starting_date: Joi.date().required()
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -247,7 +257,7 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
-					ending_date: Joi.string().min(Joi.ref('starting_date'))
+					ending_date: Joi.date().required().min(Joi.ref('starting_date'))
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {

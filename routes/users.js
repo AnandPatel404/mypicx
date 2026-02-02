@@ -4,8 +4,9 @@ import { renderSuccessResponseHandler, successResponseHandler } from '../utils/S
 import asyncHandler from '../utils/asyncHandler.js';
 import { joiValidate } from '../validations/joi_user_validation.js';
 import event_types from "../data/event_type.js";
+import { fn, col } from 'sequelize';
 import UserError from '../utils/UserError.js';
-const { History, User, Branding } = db;
+const { History, User, Branding, Event, Media } = db;
 const router = express.Router();
 
 
@@ -13,8 +14,45 @@ router.get('/dashboard', function (req, res) {
 	res.render('users/dashboard', { title: 'Dashboard' });
 });
 
-router.get('/events', function (req, res) {
-	res.render('users/event/events', { title: 'Events' });
+router.get('/events', async function (req, res) {
+	try {
+		const user_id = req.user.id;
+		const where = {
+			user_id
+		};
+
+		const count = await Event.count({
+			where,
+		});
+
+		const pageCount = Math.ceil(count / req.query.limit);
+		//include the count of all medias 
+		const data = await Event.findAll({
+			where,
+			attributes: {
+				include: [
+					[fn('COUNT', col('Media.id')), 'media_count']
+				]
+			},
+			include: [
+				{
+					model: Media,
+					attributes: [], // important: don't fetch media rows
+					required: false,
+				}
+			],
+			group: ['Event.id'],
+			order: [['createdAt', 'DESC']],
+			limit: req.query.limit,
+			offset: req.skip,
+			subQuery: false,
+		});
+		
+		return res.render('users/event/events', { title: 'Events', pageCount, data, current_page: req.query.page, });
+	} catch (error) {
+		console.error("[E] /users/events", error);
+		return res.render("500");
+	}
 });
 
 router.get('/add-event', async function (req, res) {

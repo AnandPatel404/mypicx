@@ -15,11 +15,11 @@ block content
 				.card-header
 					h5.card-title Add event
 				.card-body
-					form.create_branding_form(action="/branding" method="POST").row
+					form.create_event_form(action="/event" method="POST").row
 						.col-lg-12
 							.dropzone.custom-drop-zon.mb-3
 								.fallback
-									input(type="file" name="brand_logo")
+									input(type="file" name="cover_image")
 								.dz-message.needsclick
 									i.ti.ti-cloud-upload.h1.text-muted
 									h3 Drop files here or click to upload.
@@ -34,23 +34,21 @@ block content
 						.col-lg-4
 							.mb-3
 								label.form-label(for="input-datetime-local") Starting date
-								input.form-control(type="date" name="start_date" value=moment().format("YYYY-MM-DD"))
+								input.form-control(type="date" name="starting_date" value=moment().format("YYYY-MM-DD"))
 						.col-lg-4
 							.mb-3
 								label.form-label(for="input-datetime-local") Ending date
-								input.form-control(type="date" value=moment().format("YYYY-MM-DD"))
+								input.form-control(type="date" value=moment().format("YYYY-MM-DD") name='ending_date')
 						.col-lg-4
 							.mb-3  
 								label.form-label Event Type 
-									span.text-danger *  
-								select.select
+								select.select(name="type")
 									option(value='') Choose...
 									each type in event_types
 										option(value=type)=convert_name(type)
 						.col-lg-4
 							.mb-3  
 								label.form-label Event Branding
-									span.text-danger *
 								select.select(name="branding_id")
 									option(value="") Choose...
 									each item in all_branding
@@ -60,4 +58,4 @@ block content
 								a.btn.btn-light.me-2(href="/users/events") Cancel
 								button.btn.btn-primary(type="submit") Create Event
 block js
-	script(src="/javascripts/event.js?ver=1.0.2")
+	script(src="/javascripts/event.js?ver=1.0.0")
