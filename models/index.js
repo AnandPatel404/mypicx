@@ -12,6 +12,7 @@ import Plan from './Plan.js';
 import Subscription from './Subscription.js';
 import Transaction from './Transaction.js';
 import User from './User.js';
+import Branding from './Branding.js';
 
 const db = {
 	User: User(connection, Sequelize.DataTypes),
@@ -20,6 +21,7 @@ const db = {
 	Transaction: Transaction(connection, Sequelize.DataTypes),
 	Plan: Plan(connection, Sequelize.DataTypes),
 	Subscription: Subscription(connection, Sequelize.DataTypes),
+	Branding: Branding(connection, Sequelize.DataTypes),
 };
 
 Object.keys(db).forEach((modelName) => {

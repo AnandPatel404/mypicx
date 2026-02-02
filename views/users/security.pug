@@ -1,58 +1,58 @@
 extends ../layout/users
 block content 
-    .d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
-        div 
-            nav(aria-label="breadcrumb")
-                ol.breadcrumb.mb-0.p-0
-                    li.breadcrumb-item
-                        a(href="/users/dashboard") Dashboard 
-                    li.breadcrumb-item.active(aria-current="page") Profile
+	.d-flex.align-items-center.justify-content-between.gap-2.mb-4.flex-wrap
+		div 
+			nav(aria-label="breadcrumb")
+				ol.breadcrumb.mb-0.p-0
+					li.breadcrumb-item
+						a(href="/users/dashboard") Dashboard 
+					li.breadcrumb-item.active(aria-current="page") Profile
 
 
 
-    .row
-        .col-xl-3.col-lg-12.theiaStickySidebar
-            .card.mb-3.mb-xl-0
-                .card-body
-                    .settings-sidebar
-                        h5.mb-3.fs-17 General Settings
-                        .list-group.list-group-flush.settings-sidebar
-                            a.d-block.p-2.fw-medium(href="/users/profile") Profile
-                            a.d-block.p-2.fw-medium.active(href="/users/security") Security
-                            a.d-block.p-2.fw-medium(href="/users/activity") Activity 
+	.row
+		.col-xl-3.col-lg-12.theiaStickySidebar
+			.card.mb-3.mb-xl-0
+				.card-body
+					.settings-sidebar
+						h5.mb-3.fs-17 General Settings
+						.list-group.list-group-flush.settings-sidebar
+							a.d-block.p-2.fw-medium(href="/users/profile") Profile
+							a.d-block.p-2.fw-medium.active(href="/users/security") Security
+							a.d-block.p-2.fw-medium(href="/users/activity") Activity 
 
-        .col-xl-9.col-lg-12
-            .card.mb-0
-                .card-body
-                    .border-bottom.mb-3.pb-3
-                        h5.mb-0.fs-17 Change Password
+		.col-xl-9.col-lg-12
+			.card.mb-0
+				.card-body
+					.border-bottom.mb-3.pb-3
+						h5.mb-0.fs-17 Change Password
 
-                    form(action="")  
+					form(action="")  
 
-                        .mb-3
-                            .row
-                                .col-md-4
-                                    .mb-3
-                                        label.form-label
-                                            | Current Password 
-                                            span.text-danger *
-                                        input.form-control(type="text" placeholder="Current Password ")
+						.mb-3
+							.row
+								.col-md-4
+									.mb-3
+										label.form-label
+											| Current Password 
+											span.text-danger *
+										input.form-control(type="text" placeholder="Current Password ")
 
-                                .col-md-4
-                                    .mb-3
-                                        label.form-label
-                                            | New Password 
-                                            span.text-danger *
-                                        input.form-control(type="text" placeholder="New Password")
+								.col-md-4
+									.mb-3
+										label.form-label
+											| New Password 
+											span.text-danger *
+										input.form-control(type="text" placeholder="New Password")
 
-                                .col-md-4
-                                    .mb-3
-                                        label.form-label
-                                            | Conform Password 
-                                            span.text-danger *
-                                        input.form-control(type="text" placeholder="Conform Password ")
+								.col-md-4
+									.mb-3
+										label.form-label
+											| Conform Password 
+											span.text-danger *
+										input.form-control(type="text" placeholder="Conform Password ")
 
 
-                        .d-flex.align-items-center.justify-content-end.flex-wrap.gap-2
-                            a.btn.btn-sm.btn-light(href="#") Cancel
-                            button.btn.btn-sm.btn-primary(type="submit") Save Changes
+						.d-flex.align-items-center.justify-content-end.flex-wrap.gap-2
+							a.btn.btn-sm.btn-light(href="#") Cancel
+							button.btn.btn-sm.btn-primary(type="submit") Save Changes
