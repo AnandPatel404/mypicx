@@ -123,7 +123,7 @@ router.delete('/:id([0-9]+)', asyncHandler(async (req, res, next) => {
 	});
 
 	if (!event_exist) {
-		return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
+		return next(new UserError('Event not exist.', 'Event not exist.', 400));
 	}
 
 	//delete branding and its logo
@@ -136,7 +136,7 @@ router.delete('/:id([0-9]+)', asyncHandler(async (req, res, next) => {
 
 	await event_exist.destroy();
 
-	return successResponseHandler(res, '/branding', 200, "Branding deleted.", false, true);
+	return successResponseHandler(res, '/branding', 200, "Event deleted.", false, true);
 }));
 
 //Update event by id

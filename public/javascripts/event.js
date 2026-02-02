@@ -1,35 +1,35 @@
 $(document).ready(function () {
 
-	//$(".delete_branding_button").on('click', function (event) {
-	//	event.preventDefault();
-	//	Swal.fire({
-	//		title: 'Are you sure?',
-	//		text: 'Are you sure you want to delete this branding?',
-	//		icon: 'warning',
-	//		showCancelButton: true,
-	//		confirmButtonColor: '#3085d6',
-	//		cancelButtonColor: '#d33',
-	//		confirmButtonText: 'Yes',
-	//	}).then((result) => {
-	//		if (result.isConfirmed) {
-	//			const id = event.currentTarget.dataset.id;
-	//			fetch(`/branding/${id}`, {
-	//				method: "DELETE",
-	//				headers: {
-	//					'Content-Type': 'application/json',
-	//				},
-	//			})
-	//				.then(async (response) => {
-	//					const responseData = await response.json();
-	//					if (responseData.status !== 'success' || !response.ok) throw responseData;
-	//					return SwalAlert(responseData, 'success');
-	//				})
-	//				.catch((error) => {
-	//					return SwalAlert(error, 'error');
-	//				})
-	//		}
-	//	})
-	//})
+	$(".delete_event").on('click', function (event) {
+		event.preventDefault();
+		Swal.fire({
+			title: 'Are you sure?',
+			text: 'Are you sure you want to delete this event your all images will be deleted if you hit yes?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const id = event.currentTarget.dataset.id;
+				fetch(`/event/${id}`, {
+					method: "DELETE",
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})
+					.then(async (response) => {
+						const responseData = await response.json();
+						if (responseData.status !== 'success' || !response.ok) throw responseData;
+						return SwalAlert(responseData, 'success');
+					})
+					.catch((error) => {
+						return SwalAlert(error, 'error');
+					})
+			}
+		})
+	})
 
 	$(function () {
 		'use strict';

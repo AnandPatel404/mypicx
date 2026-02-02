@@ -48,5 +48,7 @@ block content
 									i.ti.ti-share
 								a.btn.btn-icon.btn-sm.btn-outline-dark(href="/users/setting")
 									i.ti.ti-settings
-								a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
-									i.ti.ti-trash
+								span.btn.btn-icon.btn-sm.btn-outline-danger.delete_event(data-id=item.id)
+									i.ti.ti-trash.delete_event(data-id=item.id)
+block js
+	script(src="/javascripts/event.js?ver=1.0.0")
