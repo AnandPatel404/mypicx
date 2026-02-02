@@ -1,112 +1,191 @@
 extends ../../layout/event/event-details
 block content 
+    include ../../components/users/bottom-menu
+
+    .row 
+        .col-lg-4.col-xl-3
+            .card.flex-fill.mb-0.position-relative.overflow-hidden.mb-2
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 All Photos
+                                h2.mb-0.fs-16 000
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-primary.border.border-primary
+                                i.ti.ti-building.fs-16.text-primary
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-01.svg" alt="elemnt-01")
+            .card.flex-fill.mb-0.position-relative.overflow-hidden.mb-2
+                .card-body.position-relative.z-1
+                    .d-flex.align-items-start.justify-content-between
+                        .d-flex.align-items-start.justify-content-between
+                            div
+                                p.fs-14.mb-1 All Videos
+                                h2.mb-0.fs-16 000
+                        .d-flex.align-items-center.justify-content-between
+                            span.avatar.avatar-md.rounded-circle.bg-soft-primary.border.border-primary
+                                i.ti.ti-building.fs-16.text-primary
+                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-01.svg" alt="elemnt-01")
+
+            span.btn.btn-primary.w-100.mb-2(
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#CreateCollection"
+            )
+                i.ti.ti-square-rounded-plus-filled.me-1
+                | Create Collection
+
+
+            #main_accordion.accordion.accordion-bordered
+                //- Basic Info
+                .accordion-item.rounded.mb-3
+                    .accordion-header
+                        a.accordion-button.accordion-custom-button.rounded(
+                            href="#"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#basic"
+                        )
+                            span.avatar.avatar-md.rounded.me-1
+                                i.ti.ti-user-plus
+                            | Collection
+
+                    #basic.accordion-collapse.collapse.show(data-bs-parent="#main_accordion")
+                        .accordion-body.border-top
+                            ul
+                                li
+                                    a(href="javascript:void(0);")
+                                        i.ti.ti-file-type-pdf.me-1
+                                        | All Photos
+                                li
+                                    a(href="javascript:void(0);")
+                                        i.ti.ti-file-type-xls.me-1
+                                        | Heilights
 
 
 
-    .card 
-        .card-header.card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
-            h5.card-title All Image 
-            .d-flex.align-items-center.justify-content-end.gap-2.flex-wrap
-                button.btn-icon.btn.btn-outline-light.btn-md
-                    i.ti.ti-trash
-                button.btn-icon.btn.btn-outline-light.btn-md
-                    i.ti.ti-star
-                button.btn-icon.btn.btn-outline-light.btn-md
-                    i.ti.ti-download
-                .dropdown
-                    a.dropdown-toggle.btn.btn-outline-light.shadow(
-                        href="javascript:void(0);"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    ) All Collection
+        .col-lg-8.col-xl-9
+            .card 
+                .card-header.card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
+                    .input-icon.position-relative.me-2
+                        input.form-control(
+                            type="text"
+                            placeholder="Search Keyword"
+                        )
+                        span.input-icon-addon.d-inline-flex.p-2.header-search-icon
+                            i.ti.ti-command
+                    .dropdown
+                        a.dropdown-toggle.btn.btn-outline-light.shadow(
+                            href="javascript:void(0);"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        ) Filter
 
-                    .dropdown-menu.dropdown-menu-end
-                        a.dropdown-item(href="tasks.html") All Tasks
-                        a.dropdown-item(href="tasks-important.html") Important
-                        a.dropdown-item(href="tasks-completed.html") Completed
-        .card-body 
+                        .dropdown-menu.dropdown-menu-end
+                            a.dropdown-item(href="tasks.html") All Tasks
+                            a.dropdown-item(href="tasks-important.html") Important
+                            a.dropdown-item(href="tasks-completed.html") Completed
+
             .masonry
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank1")
-                            .bank-box
-                                .check-icon
-                                img(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank1")
+                    .bank-box
+                        .check-icon
+                        img(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank2")
-                            .bank-box
-                                .check-icon
-                                img(src="http://localhost:8080/assets/img/users/user-40.jpg" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank2")
+                    .bank-box
+                        .check-icon
+                        img(src="http://localhost:8080/assets/img/users/user-40.jpg" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download 
-                            input.bank-radio(type="checkbox" name="bank" id="bank3")
-                            .bank-box
-                                .check-icon
-                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/API.svg" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download 
+                    input.bank-radio(type="checkbox" name="bank" id="bank3")
+                    .bank-box
+                        .check-icon
+                        img(src="https://whatsme.in/assets/img/front-pages/landing-page/API.svg" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank4")
-                            .bank-box
-                                .check-icon
-                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/coding-right.webp" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank4")
+                    .bank-box
+                        .check-icon
+                        img(src="https://whatsme.in/assets/img/front-pages/landing-page/coding-right.webp" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank5")
-                            .bank-box
-                                .check-icon
-                                img(src="https://whatsme.in/assets/img/front-pages/services-icon/Multi-session-Support.webp" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank5")
+                    .bank-box
+                        .check-icon
+                        img(src="https://whatsme.in/assets/img/front-pages/services-icon/Multi-session-Support.webp" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank6")
-                            .bank-box
-                                .check-icon
-                                img(src="https://whatsme.in/assets/img/front-pages/landing-page/why.svg" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank6")
+                    .bank-box
+                        .check-icon
+                        img(src="https://whatsme.in/assets/img/front-pages/landing-page/why.svg" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank7")
-                            .bank-box
-                                .check-icon
-                                img(src="https://whatsme.in/assets/img/front-pages/services-icon/api-img-1.webp" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank7")
+                    .bank-box
+                        .check-icon
+                        img(src="https://whatsme.in/assets/img/front-pages/services-icon/api-img-1.webp" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank8")
-                            .bank-box
-                                .check-icon
-                                img(src="https://fotoowl.ai/_next/static/media/sports-men.e53bc9fc.jpg" alt="")
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank8")
+                    .bank-box
+                        .check-icon
+                        img(src="https://fotoowl.ai/_next/static/media/sports-men.e53bc9fc.jpg" alt="")
 
-                        .position-relative.item
-                            .download 
-                                a(href="")
-                                    i.ti.ti-download
-                            input.bank-radio(type="checkbox" name="bank" id="bank9")
-                            .bank-box
-                                .check-icon
-                                img(src="https://fotoowl.ai/_next/static/media/reelit.caf78a78.png" alt="")
-
-
+                .position-relative.item
+                    .download 
+                        a(href="")
+                            i.ti.ti-download
+                    input.bank-radio(type="checkbox" name="bank" id="bank9")
+                    .bank-box
+                        .check-icon
+                        img(src="https://fotoowl.ai/_next/static/media/reelit.caf78a78.png" alt="")
 
 
+
+    //- Center modal content
+    .modal.fade#CreateCollection(tabindex="-1" role="dialog" aria-hidden="true")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.card-title Create Collection
+                    button.btn-close(
+                        type="button"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    )
+                .modal-body
+                    .row
+                    .col-lg-12 
+                        .col-lg-12
+                            .mb-3
+                                label.form-label(for="input-label") Collection Name
+                                input.form-control(type="text" placeholder="Enter Collection Name")
+                        .col-12.text-end
+                            button.btn.btn-primary Submit
