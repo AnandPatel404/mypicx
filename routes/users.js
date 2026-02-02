@@ -3,6 +3,7 @@ import db from '../models/index.js';
 import { renderSuccessResponseHandler, successResponseHandler } from '../utils/SuccessResponse.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import { joiValidate } from '../validations/joi_user_validation.js';
+import event_types from "../data/event_type.js";
 import UserError from '../utils/UserError.js';
 const { History, User, Branding } = db;
 const router = express.Router();
@@ -16,8 +17,26 @@ router.get('/events', function (req, res) {
 	res.render('users/event/events', { title: 'Events' });
 });
 
-router.get('/add-event', function (req, res) {
-	res.render('users/event/add-event', { title: 'Add Event' });
+router.get('/add-event', async function (req, res) {
+	try {
+
+		const user_id = req.user.id;
+
+		const all_branding = await Branding.findAll({
+			where: {
+				user_id
+			}
+		});
+
+		return res.render('users/event/add-event', {
+			title: 'Add Event', all_branding,
+			event_types,
+			convert_name: (name) => name.split('_').map(w => w[0].toUpperCase() + w.slice(1)).join(' ')
+		});
+	} catch (error) {
+		console.error("[E] /users/add-event", error);
+		return res.render("500");
+	}
 });
 
 router.get('/setting', function (req, res) {

@@ -28,6 +28,7 @@ import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import authRouter from './routes/auth.js';
 import adminRouter from './routes/admin.js';
+import eventRouter from './routes/event.js';
 import brandingRouter from './routes/branding.js';
 
 // recreate __dirname in ES modules
@@ -105,6 +106,7 @@ app.use(useragent.express());
 app.use('/', indexRouter);
 app.use('/users', isUserAuth, usersRouter);
 app.use('/branding', isUserAuth, brandingRouter);
+app.use('/event', isUserAuth, eventRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 

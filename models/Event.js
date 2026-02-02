@@ -1,4 +1,5 @@
 'use strict';
+import event_type from '../data/event_type.js';
 export default function (sequelize, DataTypes) {
 	const Event = sequelize.define(
 		'Event',
@@ -21,20 +22,65 @@ export default function (sequelize, DataTypes) {
 				type: DataTypes.STRING,
 				allowNull: false,
 			},
+			cover_image: {
+				type: DataTypes.TEXT,
+				allowNull: false,
+			},
 			starting_date: {
-				type: DataTypes.DATE,
+				type: DataTypes.DATEONLY,
 				allowNull: false,
 			},
 			ending_date: {
-				type: DataTypes.DATE,
+				type: DataTypes.DATEONLY,
 				allowNull: false,
 			},
 			event_type: {
-				type: DataTypes.ENUM('wedding', 'engagement', 'prewedding', 'birthday', 'babby_shoot', 'anniversary', 'maternity', 'sport', 'corporate', 'other'),
+				type: DataTypes.ENUM(...event_type),
 				allowNull: false,
+			},
+			status: {
+				type: DataTypes.ENUM('published', 'unpublished', 'expired'),
+				allowNull: false,
+				defaultValue: 'unpublished',
 			},
 			description: {
 				type: DataTypes.TEXT,
+				allowNull: true,
+			},
+			bulk_download: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
+			single_download: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
+			whatsapp_notification: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
+			email_notification: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
+			guest_access_pin:{
+				type: DataTypes.INTEGER(4),
+				allowNull: false,
+			},
+			full_access_pin:{
+				type: DataTypes.INTEGER(4),
+				allowNull: false,
+			},
+			photo_selection_with_full_access_pin:{
+				type: DataTypes.INTEGER(4),
+				allowNull: false,
+			},
+			vip_guest_access_pin:{
+				type: DataTypes.INTEGER(4),
 				allowNull: false,
 			},
 		},

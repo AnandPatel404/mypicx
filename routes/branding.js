@@ -42,7 +42,7 @@ router.post('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, r
 	});
 
 	if (branding_already_exist) {
-		throw new UserError('Branding already exist.', 'Branding already exist.', 400);
+		return next(new UserError('Branding already exist.', 'Branding already exist.', 400));
 	}
 
 	if (isDefault) {
@@ -59,7 +59,7 @@ router.post('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, r
 	}
 
 	if (!req.file) {
-		throw new UserError('Please upload brand logo.', 'Please upload brand logo.', 400);
+		return next(new UserError('Please upload brand logo.', 'Please upload brand logo.', 400));
 	}
 
 	const file = `/${req.file.destination.split('/')[1]}/${req.file.filename}`;
@@ -118,7 +118,7 @@ router.delete('/:id([0-9]+)', asyncHandler(async (req, res, next) => {
 	});
 
 	if (!branding_exist) {
-		throw new UserError('Branding not exist.', 'Branding not exist.', 400);
+		return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
 	}
 
 	//delete branding and its logo
@@ -162,7 +162,7 @@ router.put('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, re
 	});
 
 	if (!branding_exist) {
-		throw new UserError('Branding not exist.', 'Branding not exist.', 400);
+		return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
 	}
 
 	if (req.file) {
@@ -242,7 +242,7 @@ router.delete('/logo/:id([0-9]+)', asyncHandler(async (req, res, next) => {
 	});
 
 	if (!branding_exist) {
-		throw new UserError('Branding not exist.', 'Branding not exist.', 400);
+		return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
 	}
 
 	//delete branding and its logo
