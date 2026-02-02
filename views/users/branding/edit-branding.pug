@@ -16,22 +16,38 @@ block content
 					h5.card-title Edit Branding
 				.card-body
 					form.update_branding_form(action="/branding" method="PUT").row
-						.col-lg-12.mb-2
-							.profile-upload.d-flex.align-items-center
-								.profile-upload-img.avatar.avatar-xxl.border.border-dashed.rounded.position-relative.flex-shrink-0
-									img(
-										src="/assets/img/profiles/avatar-02.jpg",
-										alt="img"
-									)
-									a.profile-remove-btn(href="javascript:void(0);")
-										i.ti.ti-x
-								.profile-upload-content.ms-3
-									label.d-inline-flex.align-items-center.position-relative.btn.btn-primary.btn-sm.mb-2
-										i.ti.ti-file-broken.me-1
-										| Upload File
-										input#imag.input-img.position-absolute.w-100.h-100.opacity-0.top-0.end-0(type="file")
-									p.mb-0 JPG, GIF or PNG. Max size of 800K
+						if data.brand_logo
+							.col-lg-12
+								span.delete_branding_logo(data-id=data.id)
+									i.ti.ti-x(data-id=data.id)
+								img.preview1(
+									src=data.brand_logo,
+									alt="img"
+								)
+						else 
+							.col-lg-12
+								.dropzone.custom-drop-zon.mb-3
+									.fallback
+										input(type="file" name="brand_logo")
+									.dz-message.needsclick
+										i.ti.ti-cloud-upload.h1.text-muted
+										h3 Drop files here or click to upload.
+										span.text-muted.fs-13
+											| (This is just a demo dropzone. Selected files are 
+											strong not
+											|  actually uploaded.)
+						//-.col-lg-12.mb-2
+							//-.profile-upload.d-flex.align-items-center
+							//-	.profile-upload-img.avatar.avatar-xxl.border.border-dashed.rounded.position-relative.flex-shrink-0
+							//-		span
+							//-			i.ti.ti-photo
 
+							//-	.profile-upload-content.ms-3
+							//-		label.d-inline-flex.align-items-center.position-relative.btn.btn-primary.btn-sm.mb-2
+							//-			i.ti.ti-file-broken.me-1
+							//-			| Upload File
+							//-			input#imag.input-img.position-absolute.w-100.h-100.opacity-0.top-0.end-0(type="file")
+							//-		p.mb-0 JPG, GIF or PNG. Max size of 800K
 						.col-lg-4
 							.mb-3
 								label.form-label(for="input-label") Name

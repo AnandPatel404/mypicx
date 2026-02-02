@@ -19,7 +19,7 @@ export default function (sequelize, DataTypes) {
 			},
 			brand_logo: {
 				type: DataTypes.STRING,
-				allowNull: false,
+				allowNull: true,
 			},
 			tagline: {
 				type: DataTypes.STRING,

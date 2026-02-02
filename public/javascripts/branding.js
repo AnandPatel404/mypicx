@@ -104,15 +104,15 @@ $(document).ready(function () {
 				about_us: { required: false },
 				contact_number: { required: false },
 				contact_email: { required: false },
-				website: { required: false,  },
-				facebook: { required: false,  },
-				instagram: { required: false,  },
-				youtube: { required: false,  },
-				linkedin: { required: false,  },
-				whatsapp: { required: false,  },
-				x: { required: false,  },
-				snapchat: { required: false,  },
-				tiktok: { required: false,  },
+				website: { required: false, },
+				facebook: { required: false, },
+				instagram: { required: false, },
+				youtube: { required: false, },
+				linkedin: { required: false, },
+				whatsapp: { required: false, },
+				x: { required: false, },
+				snapchat: { required: false, },
+				tiktok: { required: false, },
 				address: { required: false },
 				default: { required: false },
 			},
@@ -162,4 +162,36 @@ $(document).ready(function () {
 			},
 		});
 	});
+
+	$(".delete_branding_logo").on('click', function (event) {
+		event.preventDefault();
+		Swal.fire({
+			title: 'Are you sure?',
+			text: 'Are you sure you want to delete this branding logo?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const id = event.currentTarget.dataset.id;
+				fetch(`/branding/logo/${id}`, {
+					method: "DELETE",
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})
+					.then(async (response) => {
+						const responseData = await response.json();
+						if (responseData.status !== 'success' || !response.ok) throw responseData;
+						return SwalAlert(responseData, 'success');
+					})
+					.catch((error) => {
+						return SwalAlert(error, 'error');
+					})
+			}
+		})
+	})
+
 });

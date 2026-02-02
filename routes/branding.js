@@ -211,4 +211,52 @@ router.put('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, re
 	return successResponseHandler(res, '/branding', 200, "Branding updated.", "/users/branding", false);
 }));
 
+
+//Delete branding image
+router.delete('/logo/:id([0-9]+)', asyncHandler(async (req, res, next) => {
+	try {
+		const value = await joiValidate('delete_branding_by_id').validateAsync(req.params, {
+			convert: true,
+			abortEarly: true,
+			allowUnknown: false,
+		});
+		req.params = value;
+	} catch (error) {
+		return next(
+			new UserError(
+				error.details[0]?.message,
+				error.details[0]?.message,
+				400,
+				'validation'
+			)
+		);
+	}
+	const user_id = req.user.id;
+	const { id } = req.params;
+
+	const branding_exist = await Branding.findOne({
+		where: {
+			user_id: user_id,
+			id
+		},
+	});
+
+	if (!branding_exist) {
+		throw new UserError('Branding not exist.', 'Branding not exist.', 400);
+	}
+
+	//delete branding and its logo
+
+	const file = branding_exist.brand_logo;
+
+	const path = join('public', file);
+	if (fs.existsSync(path)) fs.unlinkSync(path);
+	branding_exist.brand_logo = null;
+	await branding_exist.save();
+
+
+	return successResponseHandler(res, '/branding', 200, "Branding logo deleted.", false, true);
+}));
+
+
 export default router;
