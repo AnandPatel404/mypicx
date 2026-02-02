@@ -13,6 +13,9 @@ import Subscription from './Subscription.js';
 import Transaction from './Transaction.js';
 import User from './User.js';
 import Branding from './Branding.js';
+import Event from './Event.js';
+import Collection from './Collection.js';
+import Media from './Media.js';
 
 const db = {
 	User: User(connection, Sequelize.DataTypes),
@@ -22,6 +25,9 @@ const db = {
 	Plan: Plan(connection, Sequelize.DataTypes),
 	Subscription: Subscription(connection, Sequelize.DataTypes),
 	Branding: Branding(connection, Sequelize.DataTypes),
+	Event: Event(connection, Sequelize.DataTypes),
+	Collection: Collection(connection, Sequelize.DataTypes),
+	Media: Media(connection, Sequelize.DataTypes),
 };
 
 Object.keys(db).forEach((modelName) => {

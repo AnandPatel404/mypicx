@@ -79,6 +79,18 @@ export default function (sequelize, DataTypes) {
 		User.hasMany(models.Subscription, {
 			foreignKey: 'user_id',
 		});
+		User.hasMany(models.Event, {
+			foreignKey: 'user_id',
+		});
+		User.hasMany(models.Collection, {
+			foreignKey: 'user_id',
+		});
+		User.hasMany(models.Branding, {
+			foreignKey: 'user_id',
+		});
+		User.hasMany(models.Media, {
+			foreignKey: 'user_id',
+		});
 	};
 
 
