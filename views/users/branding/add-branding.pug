@@ -20,16 +20,17 @@ block content
                 .card-body
                     .row
                         .col-lg-12
-                            .d-flex.align-items-center.mb-3
-                                .avatar.avatar-xxl.border.border-dashed.me-3.flex-shrink-0
-                                    .position-relative.d-flex.align-items-center
-                                        i.ti.ti-photo.text-dark.fs-16
-                                .d-inline-flex.flex-column.align-items-start
-                                    .drag-upload-btn.btn.btn-sm.btn-primary.position-relative.mb-2
-                                        i.ti.ti-file-broken.me-1
-                                        | Upload file
-                                        input.form-control.image-sign(type="file" multiple)
-                                    span Add Cover Image
+                            .dropzone.custom-drop-zon.mb-3
+                                .fallback
+                                    input(type="file" name="file", multiple)
+
+                                .dz-message.needsclick
+                                    i.ti.ti-cloud-upload.h1.text-muted
+                                    h3 Drop files here or click to upload.
+                                    span.text-muted.fs-13
+                                        | (This is just a demo dropzone. Selected files are 
+                                        strong not
+                                        |  actually uploaded.)
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Name
@@ -45,34 +46,51 @@ block content
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Website
-                                input.form-control(type="text" placeholder="http://demo.com") 
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-unlink
+                                    input.form-control(type="text" placeholder="Enter website url") 
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Facebook
-                                input.form-control(type="text" placeholder="http://demo.com")
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-brand-facebook
+                                    input.form-control(type="text" placeholder="Enter facebook url")
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Instagram
-                                input.form-control(type="text" placeholder="http://demo.com")
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-brand-instagram
+                                    input.form-control(type="text" placeholder="Enter instagram url")
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") YouTube
-                                input.form-control(type="text" placeholder="http://demo.com")
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-brand-youtube
+                                    input.form-control(type="text" placeholder="Enter youtube url")
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Linkedin Page 
-                                input.form-control(type="text" placeholder="http://demo.com")
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-brand-linkedin
+                                    input.form-control(type="text" placeholder="Enter linkedin url")
                         .col-lg-4
                             .mb-3
                                 label.form-label(for="input-label") Twitter 
-                                input.form-control(type="text" placeholder="http://demo.com")
+                                .d-flex
+                                    .btn.btn-primary.btn-md.btn-icon.position-relative.me-1
+                                        i.ti.ti-brand-x
+                                    input.form-control(type="text" placeholder="Enter twitter url")
                         .col-12 
                             .mb-3 
                                 .form-check.mb-1
                                     input.form-check-input(type="checkbox" id="MakeDefault")
                                     label.form-check-label.ms-1(for="MakeDefault") Make Default
-                        .col-12 
-                            hr
+
                         .col-12 
                             .d-flex.align-items-center.justify-content-end
                                 a.btn.btn-light.me-2(href="#") Cancel
