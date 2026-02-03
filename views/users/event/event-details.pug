@@ -3,29 +3,39 @@ block content
     include ../../components/users/bottom-menu
 
     .row 
+        .col-12
+            .card 
+                .card-header.card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
+                    .d-flex
+                        .pe-3
+                            p.fs-14.mb-1 All Photos
+                            h2.mb-0.fs-16 000
+                        .border-start.ps-3
+                            p.fs-14.mb-1 All Videos
+                            h2.mb-0.fs-16 000
+                    .d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
+                        .input-icon.position-relative.me-2
+                            input.form-control(
+                                type="text"
+                                placeholder="Search Keyword"
+                            )
+                            span.input-icon-addon.d-inline-flex.p-2.header-search-icon
+                                i.ti.ti-command
+                        .dropdown
+                            a.dropdown-toggle.btn.btn-outline-light.shadow(
+                                href="javascript:void(0);"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            ) Filter
+
+                            .dropdown-menu.dropdown-menu-end
+                                a.dropdown-item(href="tasks.html") All Tasks
+                                a.dropdown-item(href="tasks-important.html") Important
+                                a.dropdown-item(href="tasks-completed.html") Completed
+
+    .row 
         .col-lg-4.col-xl-3
-            .card.flex-fill.mb-0.position-relative.overflow-hidden.mb-2
-                .card-body.position-relative.z-1
-                    .d-flex.align-items-start.justify-content-between
-                        .d-flex.align-items-start.justify-content-between
-                            div
-                                p.fs-14.mb-1 All Photos
-                                h2.mb-0.fs-16 000
-                        .d-flex.align-items-center.justify-content-between
-                            span.avatar.avatar-md.rounded-circle.bg-soft-primary.border.border-primary
-                                i.ti.ti-building.fs-16.text-primary
-                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-01.svg" alt="elemnt-01")
-            .card.flex-fill.mb-0.position-relative.overflow-hidden.mb-2
-                .card-body.position-relative.z-1
-                    .d-flex.align-items-start.justify-content-between
-                        .d-flex.align-items-start.justify-content-between
-                            div
-                                p.fs-14.mb-1 All Videos
-                                h2.mb-0.fs-16 000
-                        .d-flex.align-items-center.justify-content-between
-                            span.avatar.avatar-md.rounded-circle.bg-soft-primary.border.border-primary
-                                i.ti.ti-building.fs-16.text-primary
-                img.img-fluid.position-absolute.top-0.Start-0(src="../assets/img/icons/elemnt-01.svg" alt="elemnt-01")
+
 
             span.btn.btn-primary.w-100.mb-2(
                 type="button"
@@ -36,7 +46,7 @@ block content
                 | Create Collection
 
 
-            #main_accordion.accordion.accordion-bordered
+            #CollectionAccordion.accordion.accordion-bordered.custom-collect
                 //- Basic Info
                 .accordion-item.rounded.mb-3
                     .accordion-header
@@ -46,44 +56,35 @@ block content
                             data-bs-target="#basic"
                         )
                             span.avatar.avatar-md.rounded.me-1
-                                i.ti.ti-user-plus
+                                i.ti.ti-library
                             | Collection
 
-                    #basic.accordion-collapse.collapse.show(data-bs-parent="#main_accordion")
+                    #basic.accordion-collapse.collapse.show(data-bs-parent="#CollectionAccordion")
                         .accordion-body.border-top
-                            ul
+                            ul.collection-items
                                 li
                                     a(href="javascript:void(0);")
-                                        i.ti.ti-file-type-pdf.me-1
+                                        i.ti.ti-photo.me-1
                                         | All Photos
                                 li
                                     a(href="javascript:void(0);")
-                                        i.ti.ti-file-type-xls.me-1
-                                        | Heilights
+                                        i.ti.ti-star.me-1
+                                        | Highlights
+
+                                li
+                                    a(href="javascript:void(0);")
+                                        i.ti.ti-circle.me-1
+                                        | Stories
+
+                                li
+                                    a(href="javascript:void(0);")
+                                        i.ti.ti-library-photo.me-1
+                                        | Extra Collection
 
 
 
         .col-lg-8.col-xl-9
-            .card 
-                .card-header.card-header.d-flex.align-items-center.justify-content-between.gap-2.flex-wrap
-                    .input-icon.position-relative.me-2
-                        input.form-control(
-                            type="text"
-                            placeholder="Search Keyword"
-                        )
-                        span.input-icon-addon.d-inline-flex.p-2.header-search-icon
-                            i.ti.ti-command
-                    .dropdown
-                        a.dropdown-toggle.btn.btn-outline-light.shadow(
-                            href="javascript:void(0);"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        ) Filter
 
-                        .dropdown-menu.dropdown-menu-end
-                            a.dropdown-item(href="tasks.html") All Tasks
-                            a.dropdown-item(href="tasks-important.html") Important
-                            a.dropdown-item(href="tasks-completed.html") Completed
 
             .masonry
                 .position-relative.item

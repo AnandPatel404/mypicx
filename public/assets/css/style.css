@@ -11206,7 +11206,8 @@ Author URL: https://themeforest.net/user/dreamstechnologies
 }
 
 .bank-box {
-  background: var(--light);
+  /* background: var(--light); */
+  background: #fff;
   border: 2px solid var(--light);
   padding: 20px;
   border-radius: 6px;
@@ -14163,6 +14164,27 @@ th.fc-day-header {
 .custom-drop-zon.custom-drop-zon .fallback input{height: 100%;width: 100%;cursor: pointer;}
 .custom-drop-zon .dz-message{pointer-events: none;}
 
+
+
+.custom-collect .accordion-button,
+.custom-collect .accordion-body{padding: 10px;}
+.collection-items li a{display: flex;
+  gap: 2px;
+  align-items: center;
+  margin-bottom: 4px;padding: 4px;border-radius: 4px;}
+
+.collection-items li a:hover{background-color: var(--menu-icon-bg);}
+.collection-items li a i{font-size: 16px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--menu-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  flex-shrink: 0;}
+
+  .collection-items li a:hover i{background-color: var(--primary);color: #fff;}
 
 
 /* Tablet */
