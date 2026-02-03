@@ -7,49 +7,43 @@ block content
 					li.breadcrumb-item
 						a(href="/users/dashboard") Dashboard
 					li.breadcrumb-item.active(aria-current="page") Branding 
-
-	.d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
-		// Left side: Filter + Search
-		.d-flex
-		.d-flex.align-items-center.gap-2.flex-wrap
-			a.btn.btn-primary(href="/users/add-branding")
+		a.btn.btn-primary(href="/users/add-branding")
 				i.ti.ti-square-rounded-plus-filled.me-1
 				| Create Branding
 
+	//- .d-flex.align-items-center.justify-content-between.flex-wrap.gap-2.mb-3
+	//- 	// Left side: Filter + Search
+	//- 	.d-flex
+	//- 	.d-flex.align-items-center.gap-2.flex-wrap
+	//- 		a.btn.btn-primary(href="/users/add-branding")
+	//- 			i.ti.ti-square-rounded-plus-filled.me-1
+	//- 			| Create Branding
+
 	.row 
-		.col-12 
-			.card
-				.card-header
-					h4.card-title Branding
-				.card-body 
-					.table-responsive
-						if data.length > 0
-							table.table.mb-0
-								thead
-									tr
-										th Name
-										th Default
-										th Action
-								tbody
-									each item in data
-										tr
-											th(scope="row")
-												.d-flex.align-items-center
-													span.avatar.avatar-sm.me-2.avatar-rounded
-														img(src=item.brand_logo alt="img")
-														p.text-dark #{item.name}
-											td
-												if item.default
-													span Yes
-												else 
-													span No
-											td
-												.d-inline-flex.gap-2.justify-content-end
-													a.btn.btn-icon.btn-sm.btn-soft-info.rounded-pill(href=`/users/edit-branding/${item.id}`)
-														i.ti.ti-edit
-													span.btn.btn-icon.btn-sm.btn-soft-danger.rounded-pill.delete_branding_button(data-id=item.id)
-														i.ti.ti-trash(data-id=item.id)
-						else 
-							p No branding found
+		if data.length > 0
+			each item in data
+				.col-md-6.col-lg-4.mb-3
+					.card.blog-item.mb-0
+						.card-body
+							.blog-img.rounded.position-relative.mb-3.banding-box
+								img.img-fluid.position-relative.rounded(src=item.brand_logo alt="img")
+								if item.default
+									span.badge.bg-success.position-absolute.fs-12.top-0.start-0.mt-2.ms-2
+										| Default
+							.blog-content 
+								.mb-3
+									h6.mb-2  #{item.name}
+								hr
+								.d-flex.align-items-center.justify-content-between
+									a.btn.btn-xs.px-3.fs-12.btn-outline-dark(href=`/users/edit-branding/${item.id}`)
+										i.ti.ti-edit.me-1
+										| Edit 
+									span.btn.btn-xs.px-3.fs-12.btn-outline-danger.delete_branding_button(data-id=item.id)
+										i.ti.ti-trash.me-1(data-id=item.id)
+										| Delete 
+		else 
+			p No branding found
+
+
 block js
 	script(src="/javascripts/branding.js?ver=1.0.0")

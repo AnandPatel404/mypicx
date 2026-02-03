@@ -14186,6 +14186,28 @@ th.fc-day-header {
 
   .collection-items li a:hover i{background-color: var(--primary);color: #fff;}
 
+.banding-box,.edit-brand-logo{height: 130px;
+  background: #f7f8f9;
+  align-content: center;
+  text-align: center;
+  padding: 14px;position: relative;}
+
+.banding-box img,
+.edit-brand-logo img{height: auto;max-height: 100px;
+  width: auto !important;}
+
+.edit-brand-logo .delete_branding_logo{position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 13px;
+  align-content: center;
+  text-align: center;}
+
 
 /* Tablet */
 @media (max-width: 992px) {

@@ -17,16 +17,19 @@ block content
 				.card-body
 					form.create_branding_form(action="/branding" method="POST").row
 						.col-lg-12
-							.dropzone.custom-drop-zon.mb-3
-								.fallback
-									input(type="file" name="brand_logo")
-								.dz-message.needsclick
-									i.ti.ti-cloud-upload.h1.text-muted
-									h3 Drop files here or click to upload.
-									span.text-muted.fs-13
-										| (This is just a demo dropzone. Selected files are 
-										strong not
-										|  actually uploaded.)
+							.mb-3 
+								label.form-label(for="input-label") Upload Logo
+								input.form-control(type="file"  name="brand_logo")
+							//- .dropzone.custom-drop-zon.mb-3
+							//- 	.fallback
+							//- 		input(type="file" name="brand_logo")
+							//- 	.dz-message.needsclick
+							//- 		i.ti.ti-cloud-upload.h1.text-muted
+							//- 		h3 Drop files here or click to upload.
+							//- 		span.text-muted.fs-13
+							//- 			| (This is just a demo dropzone. Selected files are 
+							//- 			strong not
+							//- 			|  actually uploaded.)
 						.col-lg-4
 							.mb-3
 								label.form-label(for="input-label") Name
