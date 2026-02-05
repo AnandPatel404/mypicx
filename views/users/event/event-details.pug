@@ -94,7 +94,7 @@ block content
 						.download 
 							a(href=`${item.path}` download)
 								i.ti.ti-download
-						input.bank-radio(type="checkbox" name="image").select_images
+						input.bank-radio(type="checkbox" name="image" value=item.id id=item.id).select_images
 						.bank-box
 							.check-icon
 							img(src=item.thumbnail_path alt=item.name)
@@ -172,7 +172,8 @@ block content
 					hr
 					.text-end
 						button.btn.btn-primary.mx-2#startUploadBtn Upload
-	+bottom_menu(media_count, collections)
+	.button_menu_container.d-none
+		+bottom_menu(media_count, collections)
 block js
 	script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 	script(src="/javascripts/collection.js")

@@ -7,7 +7,7 @@ mixin bottom_menu(media_count, collections)
 						i.ti.ti-square-check
 					a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
 						i.ti.ti-photo-sensor-2 
-					a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
+					span.btn.btn-icon.btn-sm.btn-outline-danger.delete_media_button
 						i.ti.ti-trash 
 					a.btn.btn-icon.btn-sm.btn-outline-danger.dropdown-toggle.drop-arrow-none(
 						href="javascript:void(0);",
@@ -21,4 +21,7 @@ mixin bottom_menu(media_count, collections)
 								li
 									span.dropdown-item(data-id=item.id)=item.name
 
-					span.fs-5.ms-1.fw-semibold.text-dark=`5/${media_count}`
+					//-span.fs-5.ms-1.fw-semibold.text-dark=`5/${media_count}`
+					span.fs-5.ms-1.fw-semibold.text-dark
+						span.selected_count 
+						| / #{media_count}

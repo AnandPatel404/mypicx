@@ -2,7 +2,12 @@ import express from "express";
 import db from "../models/index.js";
 import { joiValidate } from "../validations/joi_upload_validation.js";
 import UserError from "../utils/UserError.js";
+import { Op } from "sequelize";
+import {
+	successResponseHandler,
+} from "../utils/SuccessResponse.js";
 import fs from "fs";
+import asyncHandler from "../utils/asyncHandler.js";
 import path from "path";
 import sharp from "sharp";
 import { uploadUserMedia } from "../utils/multerInstance.js";
@@ -126,6 +131,63 @@ router.post('/file', uploadUserMedia.single('file'), async (req, res, next) => {
 		throw new UserError(error.message || 'Something went wrong.', error.user_message || 'Something went wrong.', 400);
 	}
 });
+
+router.post('/delete_media', asyncHandler(async (req, res, next) => {
+	try {
+		const value = await joiValidate('delete_media').validateAsync(req.body, {
+			convert: true,
+			abortEarly: true,
+			allowUnknown: false,
+		});
+		req.body = value;
+	} catch (error) {
+		return next(
+			new UserError(
+				error.details[0]?.message,
+				error.details[0]?.message,
+				400,
+				'validation'
+			)
+		);
+	}
+	const user_id = req.user.id;
+
+	const { media_id_array, event_id } = req.body;
+
+	const media_exist = await Media.findAll({
+		where: {
+			user_id: user_id,
+			id: {
+				[Op.in]: media_id_array
+			},
+			event_id
+		},
+	});
+
+	if (!media_exist) {
+		return next(new UserError('Media not exist.', 'Media not exist.', 400));
+	}
+
+	//TODO : delete the all media of events send to queue in redis
+	await Promise.all(media_exist.map(async (media) => {
+	const media_path = path.join(process.cwd(),'public', media.path);
+	const thumbnail_path = path.join(process.cwd(),'public', media.thumbnail_path);
+		if (fs.existsSync(media_path)) fs.unlinkSync(media_path);
+		if (fs.existsSync(thumbnail_path)) fs.unlinkSync(thumbnail_path);
+	}));
+
+	await Media.destroy({
+		where: {
+			user_id: user_id,
+			id: {
+				[Op.in]: media_id_array
+			},
+			event_id
+		},
+	});
+
+	return successResponseHandler(res, '/upload/delete_media', 200, "Delete successful.", false, true);
+}));
 
 
 export default router;

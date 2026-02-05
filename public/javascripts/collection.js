@@ -195,10 +195,64 @@ $(document).ready(function () {
 		})
 	});
 
+	$(".select_images").on('click', function (event) {
+		const length = $(".select_images:checked").length;
+
+		$(".selected_count").text(length);
+
+		if (length > 0) {
+			$(".button_menu_container").removeClass("d-none");
+		} else {
+			$(".button_menu_container").addClass("d-none");
+		}
+	});
+
 	$(".select_all_images").on('click', function (event) {
 		event.preventDefault();
 		$(".select_images").each(function (element, e) {
 			this.checked = !e.checked;
+		});
+	});
+	$(".delete_media_button").on('click', function (event) {
+		event.preventDefault();
+		Swal.fire({
+			title: 'Are you sure?',
+			text: 'Are you sure you want to delete media?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const media_id_array = [];
+				$(".select_images").each(function (element, e) {
+					if (this.checked) {
+						media_id_array.push(e.value);
+					}
+				});
+
+				const final_body = {
+					event_id: $("#EditCollection input[name='event_id']").val(),
+					media_id_array
+				}
+
+				fetch(`/upload/delete_media`, {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(final_body)
+				})
+					.then(async (response) => {
+						const responseData = await response.json();
+						if (responseData.status !== 'success' || !response.ok) throw responseData;
+						return SwalAlert(responseData, 'success');
+					})
+					.catch((error) => {
+						return SwalAlert(error, 'error');
+					})
+			}
 		});
 	});
 });
