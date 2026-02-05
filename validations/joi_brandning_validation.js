@@ -339,13 +339,21 @@ export const joiValidate = (method) => {
 		case "update_branding": {
 			return Joi.object()
 				.keys({
-					name: Joi.string()
-						.optional()
+					name: Joi.string().max(255)
+						.required()
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
+									case "any.required":
+									case "any.empty":
+									case "string.empty":
+										err.message = "Please enter name.";
+										break;
 									case "string.base":
 										err.message = "Please enter valid name.";
+										break;
+									case "string.max":
+										err.message = "Name must be less than 255 characters.";
 										break;
 									default:
 										break;
@@ -354,7 +362,7 @@ export const joiValidate = (method) => {
 							return errors;
 						}),
 					brand_logo: Joi.string()
-						.optional()
+						.optional().allow("", null)
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -369,7 +377,7 @@ export const joiValidate = (method) => {
 						}),
 					tagline: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -384,7 +392,7 @@ export const joiValidate = (method) => {
 						}),
 					about_us: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {
@@ -399,7 +407,7 @@ export const joiValidate = (method) => {
 						}),
 					contact_number: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.pattern(/^[+]?[0-9\s\-()]+$/)
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -416,7 +424,7 @@ export const joiValidate = (method) => {
 						}),
 					contact_email: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.email()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -435,7 +443,7 @@ export const joiValidate = (method) => {
 						}),
 					website: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -454,7 +462,7 @@ export const joiValidate = (method) => {
 						}),
 					facebook: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -473,7 +481,7 @@ export const joiValidate = (method) => {
 						}),
 					instagram: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -492,7 +500,7 @@ export const joiValidate = (method) => {
 						}),
 					youtube: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -511,7 +519,7 @@ export const joiValidate = (method) => {
 						}),
 					linkedin: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -530,7 +538,7 @@ export const joiValidate = (method) => {
 						}),
 					whatsapp: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.pattern(/^[+]?[0-9\s\-()]+$/)
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -549,7 +557,7 @@ export const joiValidate = (method) => {
 						}),
 					x: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -568,7 +576,7 @@ export const joiValidate = (method) => {
 						}),
 					snapchat: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -587,7 +595,7 @@ export const joiValidate = (method) => {
 						}),
 					tiktok: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.uri()
 						.error((errors) => {
 							errors.forEach((err) => {
@@ -606,7 +614,7 @@ export const joiValidate = (method) => {
 						}),
 					address: Joi.string()
 						.optional()
-						.allow("")
+						.allow("", null)
 						.error((errors) => {
 							errors.forEach((err) => {
 								switch (err.code) {

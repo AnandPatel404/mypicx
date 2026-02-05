@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+	function copyToClipBoard(text) {
+		return navigator.clipboard.writeText(text).then((res) => {
+			return Swal.fire({
+				text: "Pin Copied",
+				icon: 'success',
+				buttonsStyling: false,
+				confirmButtonText: 'Ok, got it!',
+				customClass: {
+					confirmButton: 'btn btn-success',
+				},
+			})
+		})
+	}
+
+	$(".copy_pin").on('click', function (event) {
+		const pin = event.currentTarget.dataset.value;
+		copyToClipBoard(pin);
+	});
+
+
 	$(".delete_event").on('click', function (event) {
 		event.preventDefault();
 		Swal.fire({

@@ -165,6 +165,10 @@ router.put('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, re
 		return next(new UserError('Branding not exist.', 'Branding not exist.', 400));
 	}
 
+	if(!branding_exist.brand_logo && !req.file){
+		return next(new UserError('Please upload brand logo.', 'Please upload brand logo.', 400));
+	}
+
 	if (req.file) {
 		const file = branding_exist.brand_logo;
 		if (file) {
@@ -172,7 +176,7 @@ router.put('/', uploadBranding.single('brand_logo'), asyncHandler(async (req, re
 			if (fs.existsSync(path)) fs.unlinkSync(path);
 		}
 		branding_exist.brand_logo = `/${req.file.destination.split('/')[1]}/${req.file.filename}`;
-	}
+	}	
 
 	branding_exist.name = name || branding_exist.name;
 	branding_exist.tagline = tagline || branding_exist.tagline;

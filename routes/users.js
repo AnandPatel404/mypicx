@@ -47,7 +47,7 @@ router.get('/events', async function (req, res) {
 			offset: req.skip,
 			subQuery: false,
 		});
-		
+
 		return res.render('users/event/events', { title: 'Events', pageCount, data, current_page: req.query.page, });
 	} catch (error) {
 		console.error("[E] /users/events", error);
@@ -77,8 +77,56 @@ router.get('/add-event', async function (req, res) {
 	}
 });
 
-router.get('/setting', function (req, res) {
-	res.render('users/event/setting', { title: 'Setting' });
+router.get('/setting/:id([0-9]+)', async function (req, res, next) {
+	try {
+		const value = await joiValidate('get_event_by_id').validateAsync(req.params, {
+			convert: true,
+			abortEarly: true,
+			allowUnknown: false,
+		});
+		req.params = value;
+	} catch (error) {
+		return next(
+			new UserError(
+				error.details[0]?.message,
+				error.details[0]?.message,
+				400,
+				'validation'
+			)
+		);
+	}
+
+	try {
+		const id = req.params.id;
+		const user_id = req.user.id;
+
+		const event_exist = await Event.findOne({
+			where: {
+				user_id: user_id,
+				id
+			},
+		});
+
+		if (!event_exist) return res.render('404');
+
+		const branding = await Branding.findAll({
+			where: {
+				user_id
+			}
+		});
+
+
+		return res.render('users/event/setting', {
+			title: 'Setting',
+			data: event_exist,
+			all_branding: branding,
+			event_types,
+			convert_name: (name) => name.split('_').map(w => w[0].toUpperCase() + w.slice(1)).join(' ')
+		});
+	} catch (error) {
+		console.error("[E] /users/setting", error);
+		return res.render("500");
+	}
 });
 
 

@@ -346,6 +346,7 @@ router.post('/forgot_password_send_otp', asyncHandler(async function (req, res, 
 	const { email } = req.body;
 
 	const user = await User.findOne({ where: { email } });
+
 	if (!user) {
 		throw new UserError('Email not registered.', 'Email not registered.', 400);
 	}

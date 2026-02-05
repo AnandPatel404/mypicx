@@ -66,32 +66,32 @@ app.use(
 	}),
 );
 
-app.use(
-	helmet({
-		crossOriginEmbedderPolicy: false,
-		contentSecurityPolicy: {
-			directives: {
-				...helmet.contentSecurityPolicy.getDefaultDirectives(),
-				'img-src': ["'self'", 'https://*', 'data:'],
-				'script-src': [
-					"'self'",
-					'https://*',
-					"'unsafe-inline'",
-					"'unsafe-eval'",
-					'https://www.google-analytics.com/analytics.js',
-					'https://connect.facebook.net/en_US/fbevents.js',
-				],
-				'default-src': ["'self'", 'https://*', 'data:'],
-				'form-action': [
-					"'self'",
-					process.env.NODE_ENV === 'development'
-						? 'https://sandbox.cashfree.com'
-						: 'https://api.cashfree.com',
-				],
-			},
-		},
-	}),
-);
+//app.use(
+//	helmet({
+//		crossOriginEmbedderPolicy: false,
+//		contentSecurityPolicy: {
+//			directives: {
+//				...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//				'img-src': ["'self'", 'https://*', 'data:'],
+//				'script-src': [
+//					"'self'",
+//					'https://*',
+//					"'unsafe-inline'",
+//					"'unsafe-eval'",
+//					'https://www.google-analytics.com/analytics.js',
+//					'https://connect.facebook.net/en_US/fbevents.js',
+//				],
+//				'default-src': ["'self'", 'https://*', 'data:'],
+//				'form-action': [
+//					"'self'",
+//					process.env.NODE_ENV === 'development'
+//						? 'https://sandbox.cashfree.com'
+//						: 'https://api.cashfree.com',
+//				],
+//			},
+//		},
+//	}),
+//);
 
 app.use(logger('dev'));
 app.use(express.json({ limit: '50mb' }));
