@@ -200,6 +200,10 @@ $(document).ready(function () {
 
 		$(".selected_count").text(length);
 
+		if (length > 1) {
+			$(".set_cover_photo").addClass('d-none')
+		}
+
 		if (length > 0) {
 			$(".button_menu_container").removeClass("d-none");
 		} else {
