@@ -39,8 +39,6 @@ export default function (sequelize, DataTypes) {
 		});
 		Collection.belongsTo(models.Event, {
 			foreignKey: 'event_id',
-			onDelete: 'cascade',
-			hooks: true,
 		});
 		Collection.hasMany(models.Media, {
 			foreignKey: 'collection_id',

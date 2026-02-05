@@ -164,5 +164,57 @@ router.put('/', asyncHandler(async (req, res, next) => {
 	return successResponseHandler(res, '/collection', 200, "Collection updated.", null, true, {});
 }));
 
+//Delete collection
+router.post('/delete_collection', asyncHandler(async (req, res, next) => {
+	try {
+		const value = await joiValidate('delete_collection').validateAsync(req.body, {
+			convert: true,
+			abortEarly: true,
+			allowUnknown: false,
+		});
+		req.body = value;
+	} catch (error) {
+		return next(
+			new UserError(
+				error.details[0]?.message,
+				error.details[0]?.message,
+				400,
+				'validation'
+			)
+		);
+	}
+	const user_id = req.user.id;
+
+	const { event_id, id } = req.body;
+
+	const event_exist = await Event.findOne({
+		where: {
+			user_id: user_id,
+			id: event_id
+		},
+	});
+
+	if (!event_exist) {
+		return next(new UserError('Event not exist.', 'Event not exist.', 400));
+	}
+
+
+	const collection_exist = await Collection.findOne({
+		where: {
+			user_id: user_id,
+			event_id,
+			id
+		},
+	});
+
+	if (!collection_exist) {
+		return next(new UserError('Collection not exist.', 'Collection not exist.', 400));
+	}
+
+	await collection_exist.destroy();
+
+	return successResponseHandler(res, '/collection', 200, "Collection deleted.", null, true, {});
+}));
+
 
 export default router;

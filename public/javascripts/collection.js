@@ -117,4 +117,38 @@ $(document).ready(function () {
 				return SwalAlert(error, 'error');
 			})
 	});
+
+	$(".delete_collection_button").on('click', function (event) {
+		event.preventDefault();
+		Swal.fire({
+			title: 'Are you sure?',
+			text: 'Are you sure you want to delete this collection? All photos will be removed from this collection?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const id = $("#EditCollection input[name='id']").val();
+				const event_id = $("#EditCollection input[name='event_id']").val();
+				fetch(`/collection/delete_collection`, {
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ id, event_id })
+				})
+					.then(async (response) => {
+						const responseData = await response.json();
+						if (responseData.status !== 'success' || !response.ok) throw responseData;
+						return SwalAlert(responseData, 'success');
+					})
+					.catch((error) => {
+						return SwalAlert(error, 'error');
+					})
+			}
+		})
+	});
+
 });
