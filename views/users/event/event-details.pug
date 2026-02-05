@@ -208,5 +208,36 @@ block content
 						.col-12.text-end
 							button.btn.btn-danger.delete_collection_button(type="button") Delete Collection
 							button.btn.btn-primary.mx-2 Edit
+	//- Edit collection model
+	.modal.fade#UploadModel(data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true")
+		.modal-dialog.modal-dialog-centered.modal-xl.modal-dialog-scrollable
+			.modal-content
+				.modal-header
+					h5.card-title Upload your files and images here
+					button.btn-close(
+						type="button"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					)
+				.modal-body
+					form(action='/collection' method="PUT").row.update_collection_form
+						.col-lg-12
+							.mb-3
+								label.form-label(for="input-label") Select Collection
+								select.form-select(name="collection_id") 
+									each item in collections
+										option(value=item.id) #{item.name}
+						.col-lg-12
+							.mb-3
+								label.form-label(for="input-label") Files
+								input(type="hidden" name="event_id" value=data.id)
+								input#filePicker(type="file" multiple  accept=".jpg,.jpeg,.png,.webp,.gif,.bmp,.tiff")
+					hr
+					#filePreviewList
+					hr
+					.text-end
+						button.btn.btn-primary.mx-2#startUploadBtn Upload
 block js
+	script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 	script(src="/javascripts/collection.js")
+	script(src="/javascripts/upload.js")

@@ -25,6 +25,10 @@ export default function (sequelize, DataTypes) {
 				type: DataTypes.TEXT,
 				allowNull: false,
 			},
+			generated_name: {
+				type: DataTypes.TEXT,
+				allowNull: false,
+			},
 			path: {
 				type: DataTypes.TEXT,
 				allowNull: false,

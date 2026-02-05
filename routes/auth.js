@@ -3,6 +3,7 @@ import express from 'express';
 import useragent from 'express-useragent';
 import fs from 'fs';
 import passport from 'passport';
+import { randomUUID } from 'crypto';
 import path from 'path';
 import pug from 'pug';
 import OtpController from '../controllers/OtpController.js';
@@ -80,7 +81,7 @@ router.post(
 
 			req.logIn(user, async (err) => {
 				console.log(err);
-				
+
 				if (err) {
 					return next(new UserError(err.message, err.message, 400));
 				}
@@ -321,6 +322,9 @@ router.post('/register', asyncHandler(async function (req, res, next) {
 		name: name,
 		email: email,
 		password: password,
+		unique_dir_string: randomUUID(),
+		user_type: 'user',
+		status: 'active',
 	});
 	return successResponseHandler(res, "/auth/register", 200, `User registered successfully.`, '/auth/login');
 }));

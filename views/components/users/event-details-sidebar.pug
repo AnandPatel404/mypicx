@@ -4,15 +4,15 @@ div#sidebar.sidebar
 		div
 			//- Logo Normal
 			a.logo.logo-normal(href="#")
-				img(src="../assets/img/logo.svg" alt="Logo")
+				img(src="/assets/img/logo.svg" alt="Logo")
 
 			//- Logo Small
 			a.logo-small(href="#")
-				img(src="../assets/img/logo-small.svg" alt="Logo")
+				img(src="/assets/img/logo-small.svg" alt="Logo")
 
 			//- Logo Dark
 			a.dark-logo(href="#")
-				img(src="../assets/img/logo-white.svg" alt="Logo")
+				img(src="/assets/img/logo-white.svg" alt="Logo")
 
 		button#toggle_btn.sidenav-toggle-btn.btn.border-0.p-0.active
 			i.ti.ti-arrow-bar-to-left
@@ -46,6 +46,6 @@ div#sidebar.sidebar
 						li: a(href="/") 
 							i.ti.ti-steam
 							span Analytics 
-						li: a(href="/users/setting") 
+						li: a(href=`/users/setting/${user.event_id}`) 
 							i.ti.ti-settings
 							span Settings  

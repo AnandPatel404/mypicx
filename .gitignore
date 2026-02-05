@@ -135,3 +135,6 @@ public/branding/*
 
 public/event/*
 !public/event/.gitkeep
+
+public/media/*
+!public/media/.gitkeep

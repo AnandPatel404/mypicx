@@ -211,6 +211,9 @@ router.post('/delete_collection', asyncHandler(async (req, res, next) => {
 		return next(new UserError('Collection not exist.', 'Collection not exist.', 400));
 	}
 
+
+	//TODO: ADD THE MEDIA DELETE LOGIC HERE
+
 	await collection_exist.destroy();
 
 	return successResponseHandler(res, '/collection', 200, "Collection deleted.", null, true, {});

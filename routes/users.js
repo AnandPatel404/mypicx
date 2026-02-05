@@ -265,6 +265,7 @@ router.get('/event-details/:id([0-9]+)', async function (req, res) {
 
 		if (!event_exist) return res.render('404');
 		req.user.event_name = event_exist.name;
+		req.user.event_id = event_exist.id;
 
 		const media_count = await Media.count({
 			where: {

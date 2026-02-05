@@ -1,5 +1,7 @@
 'use strict';
 import bcrypt from 'bcrypt';
+import fs from 'fs';
+import path from 'path';
 export default function (sequelize, DataTypes) {
 	const User = sequelize.define(
 		'User',
@@ -39,6 +41,10 @@ export default function (sequelize, DataTypes) {
 				type: DataTypes.STRING,
 				allowNull: true,
 			},
+			unique_dir_string: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
 		},
 		{
 			timestamps: true,
@@ -57,6 +63,14 @@ export default function (sequelize, DataTypes) {
 				console.error('userLoginError', err);
 				throw new Error("Something went wrong.");
 			});
+	});
+
+	User.afterCreate(async (user) => {
+		const dir_path = path.join(process.cwd(), 'public', 'media', user.unique_dir_string);
+		const dir_path_thumbnail = path.join(process.cwd(), 'public', 'media', `${user.unique_dir_string}_thumbnail`);
+		fs.mkdirSync(dir_path, { recursive: true });
+		fs.mkdirSync(dir_path_thumbnail, { recursive: true });
+		return;
 	});
 
 	// TODO : after user create send welcome email

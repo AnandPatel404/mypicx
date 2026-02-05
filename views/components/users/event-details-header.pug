@@ -32,7 +32,11 @@ header.navbar-header
 			//- Fullscreen
 			.header-item
 				.dropdown.me-2
-					a.btn.topbar-link(href="/users/upload")
+					button.btn.topbar-link(
+						type="button"
+						data-bs-toggle="modal"
+						data-bs-target="#UploadModel"
+					)
 						i.ti.ti-upload
 				.dropdown.me-2
 					a.btn.topbar-link(href="/users/share")
@@ -43,13 +47,13 @@ header.navbar-header
 					data-bs-toggle="dropdown"
 					data-bs-offset="0,22"
 				)
-					img.rounded-1(src="../assets/img/users/user-40.jpg" width="38" alt="user-image")
+					img.rounded-1(src="/assets/img/users/user-40.jpg" width="38" alt="user-image")
 					span.online.text-success
 						i.ti.ti-circle-filled.bg-white.rounded-circle.border.border-1
 
 				.dropdown-menu.dropdown-menu-end.dropdown-menu-md.p-2
 					.d-flex.align-items-center.bg-light.rounded-3.p-2.mb-2
-						img.rounded-circle(src="../assets/img/users/user-40.jpg" width="42" height="42")
+						img.rounded-circle(src="/assets/img/users/user-40.jpg" width="42" height="42")
 						.ms-2
 							p.fw-medium.text-dark.mb-0 Katherine Brooks
 							span.fs-13 Installer
