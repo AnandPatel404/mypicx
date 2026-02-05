@@ -320,7 +320,7 @@ router.get('/event-details/:id([0-9]+)', async function (req, res) {
 		// =========================
 		const media = await Media.findAll({
 			where: mediaWhere,
-			attributes: ['thumbnail_path', 'id', 'name', 'size'],
+			attributes: ['thumbnail_path', 'id', 'name', 'size', 'path'],
 			order,
 			limit: 50
 		});
@@ -334,8 +334,6 @@ router.get('/event-details/:id([0-9]+)', async function (req, res) {
 
 		req.user.event_name = event_exist.name;
 		req.user.event_id = event_exist.id;
-		console.log("-=-=-=-=-=->",req.query);
-		
 		return res.render('users/event/event-details', {
 			title: 'Event Details',
 			data: event_exist,

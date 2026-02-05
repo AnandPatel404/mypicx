@@ -1,0 +1,24 @@
+mixin bottom_menu(media_count, collections)
+	.bottom-menu(style="position: fixed;bottom: 40px;left: 50%;z-index: 999;") 
+		.card
+			.card-body.p-2
+				.d-flex.align-items-center.justify-content-start.gap-2
+					span.btn.btn-icon.btn-sm.btn-outline-danger.select_all_images
+						i.ti.ti-square-check
+					a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
+						i.ti.ti-photo-sensor-2 
+					a.btn.btn-icon.btn-sm.btn-outline-danger(href="/users/edit-event")
+						i.ti.ti-trash 
+					a.btn.btn-icon.btn-sm.btn-outline-danger.dropdown-toggle.drop-arrow-none(
+						href="javascript:void(0);",
+						data-bs-toggle="dropdown",
+						aria-expanded="false"
+					)  
+						i.ti.ti-share
+					.dropdown-menu(aria-labelledby="dropdownWithoutArrow")
+						ul
+							each item in collections
+								li
+									span.dropdown-item(data-id=item.id)=item.name
+
+					span.fs-5.ms-1.fw-semibold.text-dark=`5/${media_count}`

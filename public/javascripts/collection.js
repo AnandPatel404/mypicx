@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-	const baseUrl = window.location.pathname;
-
 	function buildUrl(params) {
 		const url = new URL(window.location.href);
 
@@ -197,4 +195,10 @@ $(document).ready(function () {
 		})
 	});
 
+	$(".select_all_images").on('click', function (event) {
+		event.preventDefault();
+		$(".select_images").each(function (element, e) {
+			this.checked = !e.checked;
+		});
+	});
 });

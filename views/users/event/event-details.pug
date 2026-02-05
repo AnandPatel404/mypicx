@@ -1,7 +1,6 @@
 extends ../../layout/event/event-details
 block content 
-	include ../../components/users/bottom-menu
-
+	include ../../components/users/bottom_menu
 	.row 
 		.col-12
 			.card 
@@ -37,8 +36,7 @@ block content
 
 	.row 
 		.col-lg-4.col-xl-3
-
-
+			img(src=data.cover_image, alt="Cover image").img-fluid.mb-2
 			span.btn.btn-primary.w-100.mb-2(
 				type="button"
 				data-bs-toggle="modal"
@@ -46,6 +44,13 @@ block content
 			)
 				i.ti.ti-square-rounded-plus-filled.me-1
 				| Create Collection
+			button.btn.w-100.mb-2.topbar-link(
+				type="button"
+				data-bs-toggle="modal"
+				data-bs-target="#UploadModel"
+			)
+				i.ti.ti-upload.me-1
+				| Upload
 
 
 			#CollectionAccordion.accordion.accordion-bordered.custom-collect
@@ -87,9 +92,9 @@ block content
 				each item in media
 					.position-relative.item
 						.download 
-							a(href=`/${item.path}`)
+							a(href=`${item.path}` download)
 								i.ti.ti-download
-						input.bank-radio(type="checkbox" name="bank" id="bank1")
+						input.bank-radio(type="checkbox" name="image").select_images
 						.bank-box
 							.check-icon
 							img(src=item.thumbnail_path alt=item.name)
@@ -167,6 +172,7 @@ block content
 					hr
 					.text-end
 						button.btn.btn-primary.mx-2#startUploadBtn Upload
+	+bottom_menu(media_count, collections)
 block js
 	script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 	script(src="/javascripts/collection.js")
