@@ -30,6 +30,7 @@ import authRouter from './routes/auth.js';
 import adminRouter from './routes/admin.js';
 import eventRouter from './routes/event.js';
 import brandingRouter from './routes/branding.js';
+import collectionRouter from './routes/collection.js';
 
 // recreate __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -106,6 +107,7 @@ app.use(useragent.express());
 app.use('/', indexRouter);
 app.use('/users', isUserAuth, usersRouter);
 app.use('/branding', isUserAuth, brandingRouter);
+app.use('/collection', isUserAuth, collectionRouter);
 app.use('/event', isUserAuth, eventRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);

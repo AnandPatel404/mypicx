@@ -1,60 +1,51 @@
 div#sidebar.sidebar
-    //- Start Logo
-    .sidebar-logo
-        div
-            //- Logo Normal
-            a.logo.logo-normal(href="#")
-                img(src="../assets/img/logo.svg" alt="Logo")
+	//- Start Logo
+	.sidebar-logo
+		div
+			//- Logo Normal
+			a.logo.logo-normal(href="#")
+				img(src="../assets/img/logo.svg" alt="Logo")
 
-            //- Logo Small
-            a.logo-small(href="#")
-                img(src="../assets/img/logo-small.svg" alt="Logo")
+			//- Logo Small
+			a.logo-small(href="#")
+				img(src="../assets/img/logo-small.svg" alt="Logo")
 
-            //- Logo Dark
-            a.dark-logo(href="#")
-                img(src="../assets/img/logo-white.svg" alt="Logo")
+			//- Logo Dark
+			a.dark-logo(href="#")
+				img(src="../assets/img/logo-white.svg" alt="Logo")
 
-        button#toggle_btn.sidenav-toggle-btn.btn.border-0.p-0.active
-            i.ti.ti-arrow-bar-to-left
+		button#toggle_btn.sidenav-toggle-btn.btn.border-0.p-0.active
+			i.ti.ti-arrow-bar-to-left
 
-        //- Sidebar Menu Close
-        button.sidebar-close
-            i.ti.ti-x.align-middle
-    //- End Logo
+		//- Sidebar Menu Close
+		button.sidebar-close
+			i.ti.ti-x.align-middle
+	//- End Logo
 
-    //- Sidenav Menu
-    .sidebar-inner(data-simplebar)
-        #sidebar-menu.sidebar-menu
-            ul 
-                li.menu-title
-                    span Back
+	//- Sidenav Menu
+	.sidebar-inner(data-simplebar)
+		#sidebar-menu.sidebar-menu
+			ul 
+				li.menu-title
+					span Back
 
-                li 
-                    ul
-                        li: a(href="/users/dashboard") 
-                            i.ti.ti-chevron-left
-                            span Back To Event
+				li 
+					ul
+						li: a(href="/users/events") 
+							i.ti.ti-chevron-left
+							span Back To Event
 
-                li.menu-title
-                    span Main Menu
+				li.menu-title
+					span Main Menu
 
-                li
-                    ul
-                        li: a(href="/users/event-details") 
-                            i.ti.ti-dashboard
-                            span All Photos
-                        li: a(href="/users/highlights") 
-                            i.ti.ti-dashboard
-                            span Highlights
-                        li: a(href="/users/collection") 
-                            i.ti.ti-dashboard
-                            span Collection
-                        li: a(href="/users/share") 
-                            i.ti.ti-dashboard
-                            span Share 
-                        li: a(href="/") 
-                            i.ti.ti-steam
-                            span Analytics 
-                        li: a(href="/users/setting") 
-                            i.ti.ti-settings
-                            span Settings  
+				li
+					ul
+						li: a(href="/users/share") 
+							i.ti.ti-dashboard
+							span Share 
+						li: a(href="/") 
+							i.ti.ti-steam
+							span Analytics 
+						li: a(href="/users/setting") 
+							i.ti.ti-settings
+							span Settings  

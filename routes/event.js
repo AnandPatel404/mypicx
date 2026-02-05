@@ -10,7 +10,7 @@ import { join } from "path";
 import fs from "fs";
 import { uploadEventCover } from "../utils/multerInstance.js";
 import UserError from "../utils/UserError.js";
-const { Event, Branding } = db;
+const { Event, Branding, Collection } = db;
 const router = express.Router();
 
 //Creating event
@@ -76,7 +76,7 @@ router.post('/', uploadEventCover.single('cover_image'), asyncHandler(async (req
 	const vip_guest_access_pin = Math.floor(100000 + Math.random() * 900000);
 
 
-	await Event.create({
+	const event = await Event.create({
 		user_id,
 		name,
 		event_type: type,
@@ -89,6 +89,18 @@ router.post('/', uploadEventCover.single('cover_image'), asyncHandler(async (req
 		photo_selection_with_full_access_pin,
 		vip_guest_access_pin,
 	});
+
+	await Collection.create({
+		name: 'Highlights',
+		event_id: event.id,
+		user_id
+	});
+	await Collection.create({
+		name: 'Stories',
+		event_id: event.id,
+		user_id
+	});
+
 
 	return successResponseHandler(res, '/event', 200, "Event added.", '/users/events', false, null);
 }));

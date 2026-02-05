@@ -6,7 +6,7 @@ import { joiValidate } from '../validations/joi_user_validation.js';
 import event_types from "../data/event_type.js";
 import { fn, col } from 'sequelize';
 import UserError from '../utils/UserError.js';
-const { History, User, Branding, Event, Media } = db;
+const { History, User, Branding, Event, Media, Collection } = db;
 const router = express.Router();
 
 
@@ -202,10 +202,6 @@ router.get('/add-branding', function (req, res) {
 	res.render('users/branding/add-branding', { title: 'Add Event' });
 });
 
-router.get('/edit-branding', function (req, res) {
-	res.render('users/branding/edit-branding', { title: 'Edit Branding' });
-});
-
 router.get('/analytics', function (req, res) {
 	res.render('users/analytics', { title: 'Analytics' });
 });
@@ -249,8 +245,40 @@ router.get('/activity', asyncHandler(async (req, res) => {
 
 }));
 
-router.get('/event-details', function (req, res) {
-	res.render('users/event/event-details', { title: 'Event Details' });
+router.get('/event-details/:id([0-9]+)', async function (req, res) {
+	try {
+		const id = req.params.id;
+		const user_id = req.user.id;
+
+		const event_exist = await Event.findOne({
+			where: {
+				user_id: user_id,
+				id
+			},
+			include: [
+				{
+					model: Collection,
+					attributes: ['name', 'id'],
+				}
+			],
+		});
+
+		if (!event_exist) return res.render('404');
+		req.user.event_name = event_exist.name;
+
+		const media_count = await Media.count({
+			where: {
+				event_id: id,
+				user_id: user_id,
+			}
+		});
+		const collections = event_exist.Collections;
+		return res.render('users/event/event-details', { title: 'Event Details', data: event_exist, media_count, collections });
+	} catch (error) {
+		console.error("[E] /event-details/:id([0-9]+)", error);
+		return res.render("500");
+	}
+
 });
 
 router.get('/share', function (req, res) {
