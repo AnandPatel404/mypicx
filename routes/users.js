@@ -4,7 +4,7 @@ import { renderSuccessResponseHandler, successResponseHandler } from '../utils/S
 import asyncHandler from '../utils/asyncHandler.js';
 import { joiValidate } from '../validations/joi_user_validation.js';
 import event_types from "../data/event_type.js";
-import { fn, col } from 'sequelize';
+import { fn, col, Op } from 'sequelize';
 import UserError from '../utils/UserError.js';
 const { History, User, Branding, Event, Media, Collection } = db;
 const router = express.Router();
@@ -250,31 +250,100 @@ router.get('/event-details/:id([0-9]+)', async function (req, res) {
 		const id = req.params.id;
 		const user_id = req.user.id;
 
+		const {
+			collection_id,
+			sort,
+			search
+		} = req.query;
+
+		// =========================
+		// EVENT CHECK
+		// =========================
 		const event_exist = await Event.findOne({
-			where: {
-				user_id: user_id,
-				id
-			},
+			where: { user_id, id },
 			include: [
 				{
 					model: Collection,
 					attributes: ['name', 'id'],
+					order: [['createdAt', 'DESC']]
 				}
-			],
+			]
 		});
 
 		if (!event_exist) return res.render('404');
-		req.user.event_name = event_exist.name;
-		req.user.event_id = event_exist.id;
+
+		// =========================
+		// MEDIA WHERE
+		// =========================
+		const mediaWhere = {
+			event_id: id,
+			user_id
+		};
+
+		if (collection_id) {
+			mediaWhere.collection_id = collection_id;
+		}
+
+		if (search) {
+			mediaWhere.name = {
+				[Op.like]: `%${search}%`
+			};
+		}
+
+		// =========================
+		// SORTING
+		// =========================
+		let order = [['createdAt', 'DESC']];
+
+		switch (sort) {
+			case "az":
+				order = [['name', 'ASC']];
+				break;
+			case "za":
+				order = [['name', 'DESC']];
+				break;
+			case "oldest":
+				order = [['createdAt', 'ASC']];
+				break;
+			case "largest":
+				order = [['size', 'DESC']];
+				break;
+			case "smallest":
+				order = [['size', 'ASC']];
+				break;
+			default:
+				order = [['createdAt', 'DESC']];
+		}
+
+		// =========================
+		// FETCH MEDIA
+		// =========================
+		const media = await Media.findAll({
+			where: mediaWhere,
+			attributes: ['thumbnail_path', 'id', 'name', 'size'],
+			order,
+			limit: 50
+		});
 
 		const media_count = await Media.count({
-			where: {
-				event_id: id,
-				user_id: user_id,
-			}
+			where: mediaWhere
 		});
+
 		const collections = event_exist.Collections;
-		return res.render('users/event/event-details', { title: 'Event Details', data: event_exist, media_count, collections });
+
+
+		req.user.event_name = event_exist.name;
+		req.user.event_id = event_exist.id;
+		console.log("-=-=-=-=-=->",req.query);
+		
+		return res.render('users/event/event-details', {
+			title: 'Event Details',
+			data: event_exist,
+			media_count,
+			collections,
+			media,
+			query: req.query
+		});
 	} catch (error) {
 		console.error("[E] /event-details/:id([0-9]+)", error);
 		return res.render("500");

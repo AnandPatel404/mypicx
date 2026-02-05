@@ -15,6 +15,7 @@ block content
 							input.form-control(
 								type="text"
 								placeholder="Search Keyword"
+								value=query.search || ""
 							)
 							span.input-icon-addon.d-inline-flex.p-2.header-search-icon
 								i.ti.ti-command
@@ -26,12 +27,12 @@ block content
 							) Filter
 
 							.dropdown-menu.dropdown-menu-end
-								a.dropdown-item(href="tasks.html") Z to A
-								a.dropdown-item(href="tasks.html") A to Z
-								a.dropdown-item(href="tasks.html") Newest
-								a.dropdown-item(href="tasks.html") Oldest
-								a.dropdown-item(href="tasks.html") Largest
-								a.dropdown-item(href="tasks.html") Smallest
+								a.dropdown-item.filter(data-sort="az") A to Z
+								a.dropdown-item.filter(data-sort="za") Z to A
+								a.dropdown-item.filter(data-sort="newest") Newest
+								a.dropdown-item.filter(data-sort="oldest") Oldest
+								a.dropdown-item.filter(data-sort="largest") Largest
+								a.dropdown-item.filter(data-sort="smallest") Smallest
 
 
 	.row 
@@ -68,8 +69,8 @@ block content
 										i.ti.ti-photo.me-1
 										| All Photos
 								each item in collections
-									li.d-flex.justify-content-between.align-items-center
-										a(href="javascript:void(0);")
+									li.d-flex.justify-content-between.align-items-center(class=`${query.collection_id == item.id ? 'active' : ''}`)
+										a(href="?collection_id=" + item.id)
 											if item.name === 'Highlights'
 												i.ti.ti-star.me-1
 											else if item.name === 'Stories'
@@ -83,86 +84,15 @@ block content
 
 		.col-lg-8.col-xl-9
 			.masonry
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank1")
-					.bank-box
-						.check-icon
-						img(src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank2")
-					.bank-box
-						.check-icon
-						img(src="http://localhost:8080/assets/img/users/user-40.jpg" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download 
-					input.bank-radio(type="checkbox" name="bank" id="bank3")
-					.bank-box
-						.check-icon
-						img(src="https://whatsme.in/assets/img/front-pages/landing-page/API.svg" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank4")
-					.bank-box
-						.check-icon
-						img(src="https://whatsme.in/assets/img/front-pages/landing-page/coding-right.webp" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank5")
-					.bank-box
-						.check-icon
-						img(src="https://whatsme.in/assets/img/front-pages/services-icon/Multi-session-Support.webp" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank6")
-					.bank-box
-						.check-icon
-						img(src="https://whatsme.in/assets/img/front-pages/landing-page/why.svg" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank7")
-					.bank-box
-						.check-icon
-						img(src="https://whatsme.in/assets/img/front-pages/services-icon/api-img-1.webp" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank8")
-					.bank-box
-						.check-icon
-						img(src="https://fotoowl.ai/_next/static/media/sports-men.e53bc9fc.jpg" alt="")
-
-				.position-relative.item
-					.download 
-						a(href="")
-							i.ti.ti-download
-					input.bank-radio(type="checkbox" name="bank" id="bank9")
-					.bank-box
-						.check-icon
-						img(src="https://fotoowl.ai/_next/static/media/reelit.caf78a78.png" alt="")
+				each item in media
+					.position-relative.item
+						.download 
+							a(href=`/${item.path}`)
+								i.ti.ti-download
+						input.bank-radio(type="checkbox" name="bank" id="bank1")
+						.bank-box
+							.check-icon
+							img(src=item.thumbnail_path alt=item.name)
 
 
 

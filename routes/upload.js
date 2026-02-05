@@ -69,27 +69,38 @@ router.post('/file', uploadUserMedia.single('file'), async (req, res, next) => {
 		const originalPath = file.path;
 		const generatedName = file.filename;
 
-		const finalPath = originalPath;
-		let thumbPath = null;
 		let resolution = null;
-
+		const unique_dir_string = req.user.unique_dir_string;
 		if (isImage) {
-			const unique_dir_string = req.user.unique_dir_string;
 			const thumbnailPath = `public/media/${unique_dir_string}_thumbnail/${generatedName}`;
 			const image = sharp(originalPath);
 			const meta = await image.metadata();
 
 			resolution = `${meta.width}x${meta.height}`;
 
-			// thumbnail
-			await image
-				.resize(400)
-				.jpeg({ quality: 50 })
-				.toFile(thumbnailPath);
+			if (ext === '.webp') {
+				await image
+					.resize(400)
+					.webp({ quality: 50 })
+					.toFile(thumbnailPath);
 
-			thumbPath = thumbnailPath;
+			} else if (ext === '.png') {
+				await image
+					.resize(400)
+					.png({ quality: 50 })
+					.toFile(thumbnailPath);
+			} else if (ext === '.jpg' || ext === '.jpeg') {
+				await image
+					.resize(400)
+					.jpeg({ quality: 50 })
+					.toFile(thumbnailPath);
+			} else {
+				await image
+					.resize(400)
+					.toFile(thumbnailPath);
+			}
 		}
-		const sizeMB = (file.size / 1024 / 1024).toFixed(2) + " MB";
+		const sizeMB = (file.size / 1024 / 1024).toFixed(2);
 
 		await Media.create({
 			user_id,
@@ -97,8 +108,8 @@ router.post('/file', uploadUserMedia.single('file'), async (req, res, next) => {
 			collection_id: collection_id || null,
 			name: file.originalname,
 			generated_name: generatedName,
-			path: finalPath,
-			thumbnail_path: thumbPath,
+			path: `/media/${unique_dir_string}/${generatedName}`,
+			thumbnail_path: `/media/${unique_dir_string}_thumbnail/${generatedName}`,
 			resolution_size: resolution,
 			size: sizeMB,
 			type: isImage ? "image" : "video"

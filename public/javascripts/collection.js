@@ -1,4 +1,50 @@
 $(document).ready(function () {
+
+	const baseUrl = window.location.pathname;
+
+	function buildUrl(params) {
+		const url = new URL(window.location.href);
+
+		Object.keys(params).forEach(key => {
+			if (params[key]) {
+				url.searchParams.set(key, params[key]);
+			} else {
+				url.searchParams.delete(key);
+			}
+		});
+
+		return url.toString();
+	}
+
+	// =====================
+	// SORT CLICK
+	// =====================
+	$(".filter").on("click", function () {
+		const sort = $(this).data("sort");
+		window.location = buildUrl({ sort });
+	});
+
+	// =====================
+	// SEARCH
+	// =====================
+	let timer;
+	$("#searchInput").on("keyup", function () {
+		clearTimeout(timer);
+
+		timer = setTimeout(() => {
+			const search = $(this).val();
+			window.location = buildUrl({ search });
+		}, 500);
+	});
+
+	// =====================
+	// COLLECTION CLICK
+	// =====================
+	$(".collection-items a").on("click", function () {
+		const id = $(this).data("id");
+		window.location = buildUrl({ collection_id: id });
+	});
+
 	$(function () {
 		'use strict';
 		jQuery('.create_collection_form').validate({
