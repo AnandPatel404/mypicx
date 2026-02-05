@@ -68,7 +68,7 @@ block content
 										i.ti.ti-photo.me-1
 										| All Photos
 								each item in collections
-									li
+									li.d-flex.justify-content-between.align-items-center
 										a(href="javascript:void(0);")
 											if item.name === 'Highlights'
 												i.ti.ti-star.me-1
@@ -77,8 +77,9 @@ block content
 											else 
 												i.ti.ti-library-photo.me-1
 											| #{item.name}
-
-
+										if item.name !== 'Highlights' && item.name !== 'Stories'
+											span.edit_collection_button(data-id=item.id style="cursor: pointer;")
+												i.ti.ti-pencil.me-1(data-id=item.id)
 
 		.col-lg-8.col-xl-9
 			.masonry
@@ -165,7 +166,7 @@ block content
 
 
 
-	//- Center modal content
+	//- Create collection model
 	.modal.fade#CreateCollection(tabindex="-1" role="dialog" aria-hidden="true")
 		.modal-dialog.modal-dialog-centered
 			.modal-content
@@ -185,5 +186,27 @@ block content
 								input(type="hidden" name="event_id" value=data.id)
 						.col-12.text-end
 							button.btn.btn-primary Submit
+	//- Edit collection model
+	.modal.fade#EditCollection(tabindex="-1" role="dialog" aria-hidden="true")
+		.modal-dialog.modal-dialog-centered
+			.modal-content
+				.modal-header
+					h5.card-title Edit Collection
+					button.btn-close(
+						type="button"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					)
+				.modal-body
+					form(action='/collection' method="PUT").row.update_collection_form
+						.col-lg-12
+							.mb-3
+								label.form-label(for="input-label") Collection Name
+								input.form-control(type="text" placeholder="Enter Collection Name" name='name')
+								input(type="hidden" name="event_id" value=data.id)
+								input(type="hidden" name="id")
+						.col-12.text-end
+							button.btn.btn-danger(type="button") Delete Collection
+							button.btn.btn-primary.mx-2 Edit
 block js
 	script(src="/javascripts/collection.js")
