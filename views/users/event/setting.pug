@@ -9,108 +9,110 @@ block content
 					li.breadcrumb-item
 						a(href="/users/events") Events
 					li.breadcrumb-item.active(aria-current="page") Edit Events 
-	.row
-		.col-xl-12
-			.card
-				.card-header
-					h5.card-title Edit  Event
-				.card-body
-					.row
-						if data.cover_image
-							.col-lg-12.mb-3
-								.edit-brand-logo.rounded
-									span.delete_event_branding(data-id=data.id)
-										i.ti.ti-x(data-id=data.id)
-									img.preview1(
-										src=data.cover_image,
-										alt="img"
-									)
-						else 
-							.col-lg-12.mb-3 
-								label.form-label(for="input-label") Upload Logo
-								input.form-control(type="file" name="cover_image")
-						.col-lg-4
-							.mb-3
-								label.form-label(for="input-label") Name
-								input.form-control(type="text" placeholder="Enter Name" name="name" value=data.name)
-						.col-lg-4
-							.mb-3
-								label.form-label(for="input-datetime-local") Starting date
-								input.form-control(type="date" name="starting_date" value=moment(data.starting_date).format("YYYY-MM-DD"))
-						.col-lg-4
-							.mb-3
-								label.form-label(for="input-datetime-local") Ending date
-								input.form-control(type="date" value=moment(data.ending_date).format("YYYY-MM-DD") name='ending_date')
-						.col-lg-4
-							.mb-3  
-								label.form-label Event Type 
-								select.select(name="type")
-									option(value='') Choose...
-									each type in event_types
-										option(value=type, selected=type==data.event_type)=convert_name(type)
-						.col-lg-4
-							.mb-3  
-								label.form-label Event Branding
-								select.select(name="branding_id")
-									option(value="") Choose...
-									each item in all_branding
-										option(value=item.id selected=item.id==data.brand_id) #{item.name}
+	form.edit_event_form(action="/event" method="PUT")
+		.row
+			.col-xl-12
+				.card
+					.card-header
+						h5.card-title Edit  Event
+					.card-body
+						.row
+							if data.cover_image
+								.col-lg-12.mb-3
+									.edit-brand-logo.rounded
+										span.delete_event_cover_image(data-id=data.id)
+											i.ti.ti-x(data-id=data.id)
+										img.preview1(
+											src=data.cover_image,
+											alt="img"
+										)
+							else 
+								.col-lg-12.mb-3 
+									label.form-label(for="input-label") Upload Logo
+									input.form-control(type="file" name="cover_image")
+							.col-lg-4
+								.mb-3
+									label.form-label(for="input-label") Name
+									input.form-control(type="text" placeholder="Enter Name" name="name" value=data.name)
+									input(type="hidden" name="id" value=data.id)
+							.col-lg-4
+								.mb-3
+									label.form-label(for="input-datetime-local") Starting date
+									input.form-control(type="date" name="starting_date" value=moment(data.starting_date).format("YYYY-MM-DD"))
+							.col-lg-4
+								.mb-3
+									label.form-label(for="input-datetime-local") Ending date
+									input.form-control(type="date" value=moment(data.ending_date).format("YYYY-MM-DD") name='ending_date')
+							.col-lg-4
+								.mb-3  
+									label.form-label Event Type 
+									select.select(name="type" value=data.event_type)
+										option(value='') Choose...
+										each type in event_types
+											option(value=type, selected=(type == data.event_type))=convert_name(type)
+							.col-lg-4
+								.mb-3  
+									label.form-label Event Branding
+									select.select(name="branding_id" value=data.brand_id)
+										option(value="") Choose...
+										each item in all_branding
+											option(value=item.id, selected=(item.id == data.brand_id)) #{item.name}
 
-	.row
-		.col-xl-12
-			.card
-				.card-header
-					h5.card-title Download Options
-				.card-body
-					.row  
-						.col-lg-6 
-							.mb-3 
-								p Turn On to allow clients to download all the photos
-								.form-check.form-switch.mb-2
-									input.form-check-input(type="checkbox" role="switch" id="bulk_download" name="bulk_download" checked=data.bulk_download)
-									label.form-check-label(for="bulk_download") Bulk Download
+		.row
+			.col-xl-12
+				.card
+					.card-header
+						h5.card-title Download Options
+					.card-body
+						.row  
+							.col-lg-6 
+								.mb-3 
+									p Turn On to allow clients to download all the photos
+									.form-check.form-switch.mb-2
+										input.form-check-input(type="checkbox" role="switch" id="bulk_download" name="bulk_download" checked=data.bulk_download)
+										label.form-check-label(for="bulk_download") Bulk Download
 
-						.col-lg-6 
-							.mb-3 
-								p Turn On to allow clients to download individual photos
-								.form-check.form-switch.mb-2
-									input.form-check-input(type="checkbox" role="switch" id="single_download" name="single_download" checked=data.single_download)
-									label.form-check-label(for="single_download") Single Download
-	.row
-		.col-xl-12
-			.card
-				.card-header
-					h5.card-title Privacy
-				.card-body
-					.row  
-						.col-lg-6
-							.d-flex.gap-2.align-items-end
-								.mb-0.w-100
-									label.form-label(for="guest_access_pin") Guest access PIN
-									input.form-control(type="text" value=data.guest_access_pin name='guest_access_pin') 
-								.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.guest_access_pin) Copy 
-						.col-lg-6  
-							.d-flex.gap-2.align-items-end
-								.mb-0.w-100
-									label.form-label(for="full_access_pin") Full access PIN
-									input.form-control(type="text" value=data.full_access_pin name='full_access_pin') 
-								.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.full_access_pin) Copy  
-						.col-lg-6  
-							.d-flex.gap-2.align-items-end
-								.mb-0.w-100
-									label.form-label(for="photo_selection_with_full_access_pin") Photo selection with full access PIN
-									input.form-control(type="text" value=data.photo_selection_with_full_access_pin name='photo_selection_with_full_access_pin') 
-								.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.photo_selection_with_full_access_pin) Copy  
-						.col-lg-6  
-							.d-flex.gap-2.align-items-end
-								.mb-0.w-100
-									label.form-label(for="vip_guest_access_pin") Photo selection with full access PIN
-									input.form-control(type="text" value=data.vip_guest_access_pin name='vip_guest_access_pin') 
-								.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.vip_guest_access_pin) Copy  
-	.row.mb-4
-		.col-12 
-			.d-flex.align-items-center.justify-content-end
-				a.btn.btn-light.me-2(href="#") Cancel
-				button.btn.btn-primary(type="submit") Edit Event
+							.col-lg-6 
+								.mb-3 
+									p Turn On to allow clients to download individual photos
+									.form-check.form-switch.mb-2
+										input.form-check-input(type="checkbox" role="switch" id="single_download" name="single_download" checked=data.single_download)
+										label.form-check-label(for="single_download") Single Download
+		.row
+			.col-xl-12
+				.card
+					.card-header
+						h5.card-title Privacy
+					.card-body
+						.row  
+							.col-lg-6
+								.d-flex.gap-2.align-items-end
+									.mb-0.w-100
+										label.form-label(for="guest_access_pin") Guest access PIN
+										input.form-control.only_numbers(type="text" value=data.guest_access_pin name='guest_access_pin' minlength=6 maxlength=6) 
+									.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.guest_access_pin) Copy 
+							.col-lg-6  
+								.d-flex.gap-2.align-items-end
+									.mb-0.w-100
+										label.form-label(for="full_access_pin") Full access PIN
+										input.form-control.only_numbers(type="text" value=data.full_access_pin name='full_access_pin' minlength=6 maxlength=6) 
+									.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.full_access_pin) Copy  
+							.col-lg-6  
+								.d-flex.gap-2.align-items-end
+									.mb-0.w-100
+										label.form-label(for="photo_selection_with_full_access_pin") Photo selection with full access PIN
+										input.form-control.only_numbers(type="text" value=data.photo_selection_with_full_access_pin name='photo_selection_with_full_access_pin' minlength=6 maxlength=6) 
+									.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.photo_selection_with_full_access_pin) Copy  
+							.col-lg-6  
+								.d-flex.gap-2.align-items-end
+									.mb-0.w-100
+										label.form-label(for="vip_guest_access_pin") Photo selection with full access PIN
+										input.form-control.only_numbers(type="text" value=data.vip_guest_access_pin name='vip_guest_access_pin' minlength=6 maxlength=6) 
+									.btn.btn-outline-primary.copy_pin(style="max-width:100px" data-value=data.vip_guest_access_pin) Copy  
+		.row.mb-4
+			.col-12 
+				.d-flex.align-items-center.justify-content-end
+					a.btn.btn-light.me-2(href="#") Cancel
+					button.btn.btn-primary(type="submit") Edit Event
 block js
 	script(src="/javascripts/event.js")

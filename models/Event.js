@@ -24,7 +24,7 @@ export default function (sequelize, DataTypes) {
 			},
 			cover_image: {
 				type: DataTypes.TEXT,
-				allowNull: false,
+				allowNull: true,
 			},
 			starting_date: {
 				type: DataTypes.DATEONLY,

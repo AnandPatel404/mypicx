@@ -169,7 +169,9 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 		guest_access_pin,
 		full_access_pin,
 		photo_selection_with_full_access_pin,
-		vip_guest_access_pin
+		vip_guest_access_pin,
+		bulk_download,
+		single_download
 	} = req.body;
 
 	// check the event type is exist or not 
@@ -185,6 +187,10 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 
 	if (!event_exist) {
 		return next(new UserError('Event not exist.', 'Event not exist.', 400));
+	}
+
+	if (!event_exist.cover_image && !req.file) {
+		return next(new UserError('Please upload event cover image.', 'Please upload event cover image.', 400));
 	}
 
 	if (req.file) {
@@ -215,11 +221,39 @@ router.put('/', uploadEventCover.single('cover_image'), asyncHandler(async (req,
 	event_exist.event_type = type || event_exist.event_type;
 	event_exist.starting_date = starting_date || event_exist.starting_date;
 	event_exist.ending_date = ending_date || event_exist.ending_date;
-	event_exist.guest_access_pin = guest_access_pin || event_exist.guest_access_pin;
-	event_exist.full_access_pin = full_access_pin || event_exist.full_access_pin;
-	event_exist.photo_selection_with_full_access_pin = photo_selection_with_full_access_pin || event_exist.photo_selection_with_full_access_pin;
-	event_exist.vip_guest_access_pin = vip_guest_access_pin || event_exist.vip_guest_access_pin;
 
+	const pins = [
+		guest_access_pin,
+		full_access_pin,
+		photo_selection_with_full_access_pin,
+		vip_guest_access_pin
+	].filter(Boolean); // remove empty/null
+
+
+	const uniquePins = new Set(pins);
+	if (uniquePins.size !== pins.length) {
+		return next(new UserError('All pins must be unique.', 'All pins must be unique.', 400));
+	}
+
+
+	if (event_exist.guest_access_pin !== guest_access_pin) {
+		event_exist.guest_access_pin = guest_access_pin || event_exist.guest_access_pin;
+	}
+
+	if (event_exist.full_access_pin !== full_access_pin) {
+		event_exist.full_access_pin = full_access_pin || event_exist.full_access_pin;
+	}
+
+	if (event_exist.photo_selection_with_full_access_pin !== photo_selection_with_full_access_pin) {
+		event_exist.photo_selection_with_full_access_pin = photo_selection_with_full_access_pin || event_exist.photo_selection_with_full_access_pin;
+	}
+
+	if (event_exist.vip_guest_access_pin !== vip_guest_access_pin) {
+		event_exist.vip_guest_access_pin = vip_guest_access_pin || event_exist.vip_guest_access_pin;
+	}
+
+	event_exist.bulk_download = bulk_download === 'on' ? true : false;
+	event_exist.single_download = single_download === 'on' ? true : false;
 
 	await event_exist.save();
 

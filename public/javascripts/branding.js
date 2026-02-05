@@ -193,6 +193,6 @@ $(document).ready(function () {
 					})
 			}
 		})
-	})
+	});
 
 });

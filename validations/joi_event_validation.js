@@ -415,6 +415,47 @@ export const joiValidate = (method) => {
 							});
 							return errors;
 						}),
+					cover_image: Joi.string().optional().allow(null, '')
+						.error((errors) => {
+							errors.forEach((err) => {
+								switch (err.code) {
+									default:
+										break;
+								}
+							});
+							return errors;
+						}),
+					bulk_download: Joi.string().optional().allow(null, '').valid('on', 'off').error((errors) => {
+						errors.forEach((err) => {
+							switch (err.code) {
+								case 'string.base':
+									err.message = 'Bulk download should be string';
+									break;
+								case 'any.only':
+									err.message = 'Bulk download should be one of the following: on, off';
+									break;
+								default:
+									break;
+							}
+						});
+						return errors;
+					}),
+					single_download: Joi.string().optional().allow(null, '').valid('on', 'off').error((errors) => {
+						errors.forEach((err) => {
+							switch (err.code) {
+								case 'string.base':
+									err.message = 'Single download should be string';
+									break;
+								case 'any.only':
+									err.message = 'Single download should be one of the following: on, off';
+									break;
+								default:
+									break;
+							}
+						});
+						return errors;
+					}),
+
 				})
 				.options({ abortEarly: true, allowUnknown: false, convert: true }).messages({
 					'object.unknown': 'Invalid field provided.',
